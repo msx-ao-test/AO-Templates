@@ -1,0 +1,976 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_019VNK9EMGCX16gjJInQRfVlt2Ibl2uPfUh",
+    "name": "Retrieve Versions from Managed  CPEs",
+    "title": "Retrieve Versions from Managed  CPEs",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "deviceAttribute",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_019W7ODDHILPD7aoDFlNTWGwCqvYSKLPAYS",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "SW Version Ouput",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_019Y4XJ6EZMDT2XiWC4UiCtlheWgYAPLA6Q",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.integer",
+        "properties": {
+          "scope": "local",
+          "name": "loopRun",
+          "type": "datatype.integer",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_019VNKAHAU8WE2LGcS8p2FIKdBlg6HZNDtp",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "cpePassword",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_019VNKAHATU2Y46ZvN4E5W9ud9HjDNeIUDl",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "cpeName",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_019VNKAHAU1BL4TuSN8ho1HyiwxWO7sHRhn",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "tenantName",
+          "type": "datatype.string",
+          "description": "Input from User that we will search on",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_019VNKAHAU4EH7faBrUQRplDgYty0Sh4SSR",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "tenantId",
+          "type": "datatype.string",
+          "description": "Tenant ID for a given Display Name",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_019VNKAHAUAHE3eAxJuFy51EHc2KeRVB2PL",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "Software Versions Found in Tenant\\r\\n",
+          "scope": "local",
+          "name": "Working String",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_019Y3MHGR4F1T40frTWt5MiKiYCgVL3OizA",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "password",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_019VNKAHATZE13iuIMlejeGW6PBo8qMAfds",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "cpeEnablePassword",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_019VNKAHAUC241dMDJpaim2STVwOedhO6Xk",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "description": "MSX Test",
+      "display_name": "Retrieve Versions from Managed  CPEs",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "target_id": "definition_target_018N40SYBEWWH4J9x1T5jE2vSmRhFYPj1dX",
+        "execute_on_workflow_target": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_019VNKAPN6AUC3HWiWl83st8dL3LWo5NMZ6",
+        "name": "HTTP Request",
+        "title": "Login with  ID",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "accept": "application/json",
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "{\n  \"username\": \"mkeohane\",\n  \"password\": \"Keokids100!\"\n}",
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "display_name": "Login with  ID",
+          "method": "POST",
+          "relative_url": "/idm/api/v1/login",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "use_workflow_target": true
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_019VNKAWAEE4W3IvrNEXZvLlqeYzsMaw06v",
+        "name": "JSONPath Query",
+        "title": "Get the MSX User Token",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Get the MSX User Token",
+          "input_json": "$activity.definition_activity_019VNKAPN6AUC3HWiWl83st8dL3LWo5NMZ6.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$.responseObject.userToken",
+              "jsonpath_query_name": "userToken",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            }
+          ],
+          "skip_execution": false
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_019VNKB3ZCEGP5NCNdKGQher0QqxqEZH9nt",
+        "name": "HTTP Request",
+        "title": "Pull the Ternant List from MSX IDM",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "accept": "application/json",
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "{}",
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "Authorization",
+              "value": "Bearer $activity.definition_activity_019VNKAWAEE4W3IvrNEXZvLlqeYzsMaw06v.output.jsonpath_queries.userToken$"
+            }
+          ],
+          "display_name": "Pull the Ternant List from MSX IDM",
+          "method": "POST",
+          "relative_url": "manage/api/v1/services/list",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01C5PEFKVYX4R2i1kQK4SrxkEO12MXPQHeD",
+        "name": "Group",
+        "title": "Not sure why I have this twice!",
+        "type": "logic.group",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Not sure why I have this twice!",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_019VNKBC8QG5W5ZSAqGVVzX1FHaa3kJcgE8",
+            "name": "HTTP Request",
+            "title": "GET /api/v1/tenants",
+            "type": "web-service.http_request",
+            "base_type": "activity",
+            "properties": {
+              "accept": "application/json",
+              "action_timeout": 180,
+              "allow_auto_redirect": true,
+              "content_type": "application/json",
+              "continue_on_error_status_code": false,
+              "continue_on_failure": false,
+              "custom_headers": [
+                {
+                  "name": "Authorization",
+                  "value": "Bearer $activity.definition_activity_019VNKAWAEE4W3IvrNEXZvLlqeYzsMaw06v.output.jsonpath_queries.userToken$"
+                }
+              ],
+              "display_name": "GET /api/v1/tenants",
+              "method": "GET",
+              "relative_url": "/idm/api/v1/tenants",
+              "runtime_user": {
+                "override_target_runtime_user": false,
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target": false,
+                "override_workflow_target_group_criteria": false,
+                "use_workflow_target": true,
+                "use_workflow_target_group": false
+              }
+            },
+            "object_type": "definition_activity"
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_019VNKBJGLKVP2D06wbSnoUZOXsTzOYyLM0",
+        "name": "Read Table from JSON",
+        "title": "Populate Tenant Table tabble from JSON API Return",
+        "type": "corejava.read_table_from_json",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Populate Tenant Table tabble from JSON API Return",
+          "input_json": "$activity.01B4DBTWGNQPG1zhSd6Ygt06YbkWNVXBEng.output.response_body$",
+          "jsonpath_query": "$..tenants",
+          "persist_output": true,
+          "populate_columns": false,
+          "skip_execution": false,
+          "table_columns": [
+            {
+              "column_name": "displayName",
+              "column_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "tenantId",
+              "column_type": "string",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_019VNKBQ0T3771UdXef3kNB7g3Ivkc5r9Si",
+        "name": "For Each",
+        "title": "For Each Element in the Tenant  Array",
+        "type": "logic.for_each",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "For Each Element in the Tenant  Array",
+          "skip_execution": false,
+          "source_array": "$activity.definition_activity_019VNKBJGLKVP2D06wbSnoUZOXsTzOYyLM0.output.read_table_from_json$"
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_019VNKBXNX98T4VFyoCpxOw8wznClzTTDQk",
+            "name": "Condition Block",
+            "title": "Condition Block",
+            "type": "logic.if_else",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Condition Block",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "blocks": [
+              {
+                "unique_name": "definition_activity_019VNKC2EW5346JE4FM5jFPlj80HPoVqLcp",
+                "name": "Condition Branch",
+                "title": "If DisplayName  Matches",
+                "type": "logic.condition_block",
+                "base_type": "activity",
+                "properties": {
+                  "condition": {
+                    "left_operand": "$activity.definition_activity_019VNKBQ0T3771UdXef3kNB7g3Ivkc5r9Si.input.source_array[@].displayName$",
+                    "operator": "eq",
+                    "right_operand": "$workflow.definition_workflow_019VNK9EMGCX16gjJInQRfVlt2Ibl2uPfUh.input.variable_workflow_019VNKAHAU4EH7faBrUQRplDgYty0Sh4SSR$"
+                  },
+                  "continue_on_failure": false,
+                  "description": "Match the inputed Display Name Against the List\n",
+                  "display_name": "If DisplayName  Matches",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_019VNKC8G25GA42tbLOd2Uvpq0pmCjW6JDT",
+                    "name": "Set Variables",
+                    "title": "Set tenantID",
+                    "type": "core.set_multiple_variables",
+                    "base_type": "activity",
+                    "properties": {
+                      "continue_on_failure": false,
+                      "display_name": "Set tenantID",
+                      "skip_execution": false,
+                      "variables_to_update": [
+                        {
+                          "variable_to_update": "$workflow.definition_workflow_019VNK9EMGCX16gjJInQRfVlt2Ibl2uPfUh.local.variable_workflow_019VNKAHAUAHE3eAxJuFy51EHc2KeRVB2PL$",
+                          "variable_value_new": "$activity.definition_activity_019VNKBQ0T3771UdXef3kNB7g3Ivkc5r9Si.input.source_array[@].tenantId$"
+                        }
+                      ]
+                    },
+                    "object_type": "definition_activity"
+                  },
+                  {
+                    "unique_name": "definition_activity_019Y388KFAVXS0o3f05Z0pUvP9zOun3rg4x",
+                    "name": "Break",
+                    "title": "Break",
+                    "type": "logic.break",
+                    "base_type": "activity",
+                    "properties": {
+                      "continue_on_failure": false,
+                      "display_name": "Break"
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_01C5PEWD7349I0xEChVvjefa6VCNK2apf9x",
+        "name": "Group",
+        "title": "Get Devices then Device IDs",
+        "type": "logic.group",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Get Devices then Device IDs",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_019VNKCGAQDTG0IW9mlfYps5DvV3eR8u7x5",
+            "name": "HTTP Request",
+            "title": "Get All Devices for a Tenant",
+            "type": "web-service.http_request",
+            "base_type": "activity",
+            "properties": {
+              "accept": "application/json",
+              "action_timeout": 180,
+              "allow_auto_redirect": true,
+              "content_type": "application/json",
+              "continue_on_error_status_code": false,
+              "continue_on_failure": false,
+              "custom_headers": [
+                {
+                  "name": "Authorization",
+                  "value": "Bearer $activity.definition_activity_019VNKAWAEE4W3IvrNEXZvLlqeYzsMaw06v.output.jsonpath_queries.userToken$"
+                }
+              ],
+              "description": "Get a complete list of devices",
+              "display_name": "Get All Devices for a Tenant",
+              "method": "GET",
+              "relative_url": "/manage/api/v1/devices?tenantId=$workflow.definition_workflow_019VNK9EMGCX16gjJInQRfVlt2Ibl2uPfUh.local.variable_workflow_019VNKAHAUAHE3eAxJuFy51EHc2KeRVB2PL$",
+              "runtime_user": {
+                "override_target_runtime_user": false,
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target": false,
+                "use_workflow_target": true
+              }
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_019VY2BP8TN7R5n8jF20K6Z31u1wGWMddtW",
+            "name": "Read Table from JSON",
+            "title": "Pull All deviceIds from Tenant",
+            "type": "corejava.read_table_from_json",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "continue_on_failure": false,
+              "display_name": "Pull All deviceIds from Tenant",
+              "input_json": "$activity.definition_activity_019VNKCGAQDTG0IW9mlfYps5DvV3eR8u7x5.output.response_body$",
+              "jsonpath_query": "$.deviceInstances",
+              "persist_output": true,
+              "populate_columns": false,
+              "skip_execution": false,
+              "table_columns": [
+                {
+                  "column_name": "deviceInstanceId",
+                  "column_type": "string",
+                  "zdate_type_format": ""
+                },
+                {
+                  "column_name": "deviceAttribute",
+                  "column_type": "string",
+                  "zdate_type_format": ""
+                }
+              ]
+            },
+            "object_type": "definition_activity"
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_01C5PFBK0OTKB2BijRL6QyuY5e03URf57sZ",
+        "name": "Group",
+        "title": "Start NSO Transaction",
+        "type": "logic.group",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "description": "On Error you need to close NSO session! This code should be cleaned\n",
+          "display_name": "Start NSO Transaction",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_019VYE5BDQDNB0dDNPhDiU7Rtz2WhswknVQ",
+            "name": "Session Login",
+            "title": "Session Login",
+            "type": "jsonrpc.login",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "continue_on_failure": false,
+              "display_name": "Session Login",
+              "runtime_user": {
+                "override_target_runtime_user": false,
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target": true,
+                "target_id": "definition_target_01B4D63697W6E1kMBSzwacct6uOpOJKU1Mk"
+              }
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_019VYE9UTYS2Z4VeoVrxOHHtKlxqYWkGW0f",
+            "name": "Start a new Transaction",
+            "title": "Start a new Transaction",
+            "type": "jsonrpc.newtrans",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "continue_on_failure": false,
+              "database": "running",
+              "display_name": "Start a new Transaction",
+              "mode": "read",
+              "runtime_user": {
+                "override_target_runtime_user": false,
+                "target_default": true
+              },
+              "sessionid": "$activity.definition_activity_019VYE5BDQDNB0dDNPhDiU7Rtz2WhswknVQ.output.sessionid$",
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target": true,
+                "target_id": "definition_target_01B4D63697W6E1kMBSzwacct6uOpOJKU1Mk"
+              }
+            },
+            "object_type": "definition_activity"
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_019VYC3BT17Z74ydRuwSQzH5joG43iNukL9",
+        "name": "For Each",
+        "title": "For Each deviceId in the Tenant",
+        "type": "logic.for_each",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "description": "Loop Through all the deviceIDs  and Make a call to NSO to get the Version",
+          "display_name": "For Each deviceId in the Tenant",
+          "skip_execution": false,
+          "source_array": "$activity.01B4DBVH6CH5X5GKO18ymQlmed3KZQIeLx9.output.read_table_from_json$"
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_019VYDEAHRDXP5BLBdg6gbf4NLoVpT1fQXr",
+            "name": "Run Action",
+            "title": "Get Version from CPE",
+            "type": "jsonrpc.runaction",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "continue_on_failure": true,
+              "description": "Override Target and use JSON RPC for AIO23",
+              "display_name": "Get Version from CPE",
+              "params": "{\"args\":\"\\\"do show version | inc Cisco IOS XE Software\\\"\"}",
+              "path": "/ncs:devices/device{$activity.definition_activity_019VYC3BT17Z74ydRuwSQzH5joG43iNukL9.input.source_array[@].deviceInstanceId$}/config/ios:EXEC/exec",
+              "runtime_user": {
+                "override_target_runtime_user": true,
+                "runtime_user_id": "definition_runtime_user_018VMH9COMVB16IGKKmxLzMyri8UYcaJyeq"
+              },
+              "sessionid": "$activity.definition_activity_019VYE5BDQDNB0dDNPhDiU7Rtz2WhswknVQ.output.sessionid$",
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target": true,
+                "target_id": "definition_target_01B4D63697W6E1kMBSzwacct6uOpOJKU1Mk"
+              },
+              "th": "$activity.definition_activity_019VYE9UTYS2Z4VeoVrxOHHtKlxqYWkGW0f.output.th$"
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_019Y41W2BS41P5jqWhFjAfBJ5ZBzSBMj4mo",
+            "name": "JSONPath Query",
+            "title": "Extract SW Version from Version Call",
+            "type": "corejava.jsonpathquery",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "continue_on_failure": false,
+              "display_name": "Extract SW Version from Version Call",
+              "input_json": "$activity.definition_activity_019VYDEAHRDXP5BLBdg6gbf4NLoVpT1fQXr.output.output$",
+              "jsonpath_queries": [
+                {
+                  "jsonpath_query": "$..result",
+                  "jsonpath_query_name": "swVerion",
+                  "jsonpath_query_type": "string",
+                  "zdate_type_format": ""
+                }
+              ],
+              "skip_execution": false
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_019Y4FZYUXSDA347RRx6StzDh4jbVsk8ICw",
+            "name": "Match Regular Expression",
+            "title": "Reduce SW Version String",
+            "type": "core.matchregex",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Reduce SW Version String",
+              "input_regex": "Version(.*?)\\\\",
+              "input_string": "$activity.definition_activity_019Y41W2BS41P5jqWhFjAfBJ5ZBzSBMj4mo.output.jsonpath_queries.swVerion$",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_019Y3BVVDO2B53r1KRO7WNl5EK6m5Wus6aQ",
+            "name": "HTTP Request",
+            "title": "Get DeviceID Information",
+            "type": "web-service.http_request",
+            "base_type": "activity",
+            "properties": {
+              "accept": "application/json",
+              "action_timeout": 180,
+              "allow_auto_redirect": true,
+              "content_type": "application/json",
+              "continue_on_error_status_code": false,
+              "continue_on_failure": false,
+              "custom_headers": [
+                {
+                  "name": "Authorization",
+                  "value": "Bearer$activity.definition_activity_019VNKAWAEE4W3IvrNEXZvLlqeYzsMaw06v.output.jsonpath_queries.userToken$"
+                }
+              ],
+              "display_name": "Get DeviceID Information",
+              "method": "Get",
+              "relative_url": "/manage/api/v1/devices/$activity.definition_activity_019VYC3BT17Z74ydRuwSQzH5joG43iNukL9.input.source_array[@].deviceInstanceId$",
+              "runtime_user": {
+                "override_target_runtime_user": false,
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target": false,
+                "override_workflow_target_group_criteria": false,
+                "use_workflow_target": true,
+                "use_workflow_target_group": false
+              }
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_019Y3GZH0ZN1H1onB8uIq0OtaSVjKcxfFSV",
+            "name": "JSONPath Query",
+            "title": "Pull siteDisplayName From Result",
+            "type": "corejava.jsonpathquery",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "continue_on_failure": false,
+              "display_name": "Pull siteDisplayName From Result",
+              "input_json": "$activity.definition_activity_019Y3BVVDO2B53r1KRO7WNl5EK6m5Wus6aQ.output.response_body$",
+              "jsonpath_queries": [
+                {
+                  "jsonpath_query": "$..siteDisplayName",
+                  "jsonpath_query_name": "siteDisplayName",
+                  "jsonpath_query_type": "string",
+                  "zdate_type_format": ""
+                }
+              ],
+              "skip_execution": false
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_019YJGZIOQUHD7hyECgNTHAgqBfCOBYfflF",
+            "name": "Condition Block",
+            "title": "Condition Block",
+            "type": "logic.if_else",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Condition Block",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "blocks": [
+              {
+                "unique_name": "definition_activity_019YJGZL70FSB0fF6wjY0a6vodbvlscX2Wf",
+                "name": "Condition Branch",
+                "title": "Version Found",
+                "type": "logic.condition_block",
+                "base_type": "activity",
+                "properties": {
+                  "condition": {
+                    "left_operand": "$activity.definition_activity_019Y4FZYUXSDA347RRx6StzDh4jbVsk8ICw.output.succeeded$",
+                    "operator": "eq",
+                    "right_operand": true
+                  },
+                  "continue_on_failure": false,
+                  "display_name": "Version Found",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_019Y3ONJ1B2TW0oJprlf7RFWJga1zeI5NLY",
+                    "name": "Set Variables",
+                    "title": "Build Output String",
+                    "type": "core.set_multiple_variables",
+                    "base_type": "activity",
+                    "properties": {
+                      "continue_on_failure": false,
+                      "display_name": "Build Output String",
+                      "skip_execution": false,
+                      "variables_to_update": [
+                        {
+                          "variable_to_update": "$workflow.definition_workflow_019VNK9EMGCX16gjJInQRfVlt2Ibl2uPfUh.local.variable_workflow_019Y3MHGR4F1T40frTWt5MiKiYCgVL3OizA$",
+                          "variable_value_new": "$workflow.definition_workflow_019VNK9EMGCX16gjJInQRfVlt2Ibl2uPfUh.local.variable_workflow_019Y3MHGR4F1T40frTWt5MiKiYCgVL3OizA$   $activity.definition_activity_019Y3GZH0ZN1H1onB8uIq0OtaSVjKcxfFSV.output.jsonpath_queries.siteDisplayName$ :  $activity.definition_activity_019Y4FZYUXSDA347RRx6StzDh4jbVsk8ICw.output.matching_strings[0]$\\r"
+                        }
+                      ]
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_019Y3URWCRG9P3obwahX6rwcV9EY47uz7UF",
+        "name": "StringToHtml",
+        "title": "StringToHtml",
+        "type": "workflow.atomic_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "StringToHtml",
+          "input": {
+            "variable_workflow_019VB83YPB3P45wVXyoGyYD6jtSChU2zKfQ": "$workflow.definition_workflow_019VNK9EMGCX16gjJInQRfVlt2Ibl2uPfUh.local.variable_workflow_019Y3MHGR4F1T40frTWt5MiKiYCgVL3OizA$"
+          },
+          "runtime_user": {},
+          "target": {
+            "execute_on_this_target": false,
+            "no_target": true,
+            "override_workflow_target": false,
+            "use_workflow_target": false
+          },
+          "workflow_id": "definition_workflow_019VB6S3OTZX06N6DmhcAhoAu4swQmg56Lq"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_019Y4XMM7C03M5qtwdE6sA4MUpHgOeGuUPA",
+        "name": "Set Variables",
+        "title": "Set Variables",
+        "type": "core.set_multiple_variables",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Set Variables",
+          "skip_execution": false,
+          "variables_to_update": [
+            {
+              "variable_to_update": "$workflow.definition_workflow_019VNK9EMGCX16gjJInQRfVlt2Ibl2uPfUh.output.variable_workflow_019Y4XJ6EZMDT2XiWC4UiCtlheWgYAPLA6Q$",
+              "variable_value_new": "$activity.definition_activity_019Y3URWCRG9P3obwahX6rwcV9EY47uz7UF.output.variable_workflow_019VB8DIROQOS2DqDzkguxi7lWUCG6oMMLj$"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_019W05U4TEVOP6LTVqioPUBk5ERRVb6G1aa",
+        "name": "Session Logout",
+        "title": "Session Logout",
+        "type": "jsonrpc.logout",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Session Logout",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "sessionid": "$activity.01B4DBVQJGEWY3xjwN9Nyd4y0rl967bEtyW.output.sessionid$",
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": true,
+            "target_id": "definition_target_01B4D63697W6E1kMBSzwacct6uOpOJKU1Mk"
+          }
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_015WSP6FKOE1G0rdwqNdMBv1RDpYSbj4pfX",
+      "category_018N48CP5P46S5dIr58qUvFga0gJhsCxyqP",
+      "category_018N48CTGE0RV53ytLrp4JUwboDZEySkHAz",
+      "category_018N48CYDZQXB3bmVJgS2c91YaxlPkyw2Zj",
+      "category_018N48D31TKOA56JOIdeA4PsbIssTw8pztL",
+      "category_018N48D6TM3DC5tHK46xI2nlBuGd2ZUlN1l",
+      "category_018N48DBMXG862wPEhugcuddOlCI7dmr7he",
+      "category_018N48DFNLFHM53T9TCKwKTnw5gw1VU0za0",
+      "category_018N48DJWRT7I3xeGKUeD9yx3PdsP2pSJEY"
+    ]
+  },
+  "categories": {
+    "category_015WSP6FKOE1G0rdwqNdMBv1RDpYSbj4pfX": {
+      "unique_name": "category_015WSP6FKOE1G0rdwqNdMBv1RDpYSbj4pfX",
+      "name": "MSX Operations",
+      "title": "MSX Operations",
+      "type": "basic.category",
+      "base_type": "category",
+      "description": "Category to support MSX Operational Workflows",
+      "category_type": "custom",
+      "object_type": "category"
+    },
+    "category_018N48CP5P46S5dIr58qUvFga0gJhsCxyqP": {
+      "unique_name": "category_018N48CP5P46S5dIr58qUvFga0gJhsCxyqP",
+      "name": "6eba1cf5-6d49-403d-bf74-b19cff424d4d",
+      "title": "6eba1cf5-6d49-403d-bf74-b19cff424d4d",
+      "type": "basic.category",
+      "base_type": "category",
+      "description": "6eba1cf5-6d49-403d-bf74-b19cff424d4d",
+      "category_type": "custom",
+      "object_type": "category"
+    },
+    "category_018N48CTGE0RV53ytLrp4JUwboDZEySkHAz": {
+      "unique_name": "category_018N48CTGE0RV53ytLrp4JUwboDZEySkHAz",
+      "name": "4727e4b5-f253-4bb9-84b4-4c98bc22923c",
+      "title": "4727e4b5-f253-4bb9-84b4-4c98bc22923c",
+      "type": "basic.category",
+      "base_type": "category",
+      "description": "4727e4b5-f253-4bb9-84b4-4c98bc22923c",
+      "category_type": "custom",
+      "object_type": "category"
+    },
+    "category_018N48CYDZQXB3bmVJgS2c91YaxlPkyw2Zj": {
+      "unique_name": "category_018N48CYDZQXB3bmVJgS2c91YaxlPkyw2Zj",
+      "name": "22a09ffe-1aa3-4753-b110-53dea93c8e0e",
+      "title": "22a09ffe-1aa3-4753-b110-53dea93c8e0e",
+      "type": "basic.category",
+      "base_type": "category",
+      "description": "22a09ffe-1aa3-4753-b110-53dea93c8e0e",
+      "category_type": "custom",
+      "object_type": "category"
+    },
+    "category_018N48D31TKOA56JOIdeA4PsbIssTw8pztL": {
+      "unique_name": "category_018N48D31TKOA56JOIdeA4PsbIssTw8pztL",
+      "name": "935769d1-f55f-435b-857c-d8a78840cb1a",
+      "title": "935769d1-f55f-435b-857c-d8a78840cb1a",
+      "type": "basic.category",
+      "base_type": "category",
+      "description": "935769d1-f55f-435b-857c-d8a78840cb1a",
+      "category_type": "custom",
+      "object_type": "category"
+    },
+    "category_018N48D6TM3DC5tHK46xI2nlBuGd2ZUlN1l": {
+      "unique_name": "category_018N48D6TM3DC5tHK46xI2nlBuGd2ZUlN1l",
+      "name": "0a56f1ad-2222-4ce2-8bfd-0f7da6748dde",
+      "title": "0a56f1ad-2222-4ce2-8bfd-0f7da6748dde",
+      "type": "basic.category",
+      "base_type": "category",
+      "description": "0a56f1ad-2222-4ce2-8bfd-0f7da6748dde",
+      "category_type": "custom",
+      "object_type": "category"
+    },
+    "category_018N48DBMXG862wPEhugcuddOlCI7dmr7he": {
+      "unique_name": "category_018N48DBMXG862wPEhugcuddOlCI7dmr7he",
+      "name": "a13bbd06-bbcf-40a0-b192-8d560d7e46d6",
+      "title": "a13bbd06-bbcf-40a0-b192-8d560d7e46d6",
+      "type": "basic.category",
+      "base_type": "category",
+      "description": "a13bbd06-bbcf-40a0-b192-8d560d7e46d6",
+      "category_type": "custom",
+      "object_type": "category"
+    },
+    "category_018N48DFNLFHM53T9TCKwKTnw5gw1VU0za0": {
+      "unique_name": "category_018N48DFNLFHM53T9TCKwKTnw5gw1VU0za0",
+      "name": "b81ec868-dfd2-495e-9ca6-192bbc778370",
+      "title": "b81ec868-dfd2-495e-9ca6-192bbc778370",
+      "type": "basic.category",
+      "base_type": "category",
+      "description": "b81ec868-dfd2-495e-9ca6-192bbc778370",
+      "category_type": "custom",
+      "object_type": "category"
+    },
+    "category_018N48DJWRT7I3xeGKUeD9yx3PdsP2pSJEY": {
+      "unique_name": "category_018N48DJWRT7I3xeGKUeD9yx3PdsP2pSJEY",
+      "name": "2fe36804-3442-48e5-b472-53bcfc073e4d",
+      "title": "2fe36804-3442-48e5-b472-53bcfc073e4d",
+      "type": "basic.category",
+      "base_type": "category",
+      "description": "2fe36804-3442-48e5-b472-53bcfc073e4d",
+      "category_type": "custom",
+      "object_type": "category"
+    }
+  },
+  "targets": {
+    "definition_target_018N40SYBEWWH4J9x1T5jE2vSmRhFYPj1dX": {
+      "unique_name": "definition_target_018N40SYBEWWH4J9x1T5jE2vSmRhFYPj1dX",
+      "name": "AIO23",
+      "title": "AIO23",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "disable_certificate_validation": true,
+        "display_name": "AIO23",
+        "host": "bxbdmzaio23.tme.ciscomsx.com",
+        "no_runtime_user": true,
+        "protocol": "https"
+      }
+    },
+    "definition_target_01B4D63697W6E1kMBSzwacct6uOpOJKU1Mk": {
+      "unique_name": "definition_target_01B4D63697W6E1kMBSzwacct6uOpOJKU1Mk",
+      "name": "AIO23 JSON RPC",
+      "title": "AIO23 JSON RPC",
+      "type": "json-rpc.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "default_runtime_user_id": "definition_runtime_user_01B4CFH3D2DN02xZcNEpSGK2GOEDHHqAsMJ",
+        "display_name": "AIO23 JSON RPC",
+        "host": "nso-manageddevice.vms.svc.cluster.local",
+        "port": 8080,
+        "protocol": "http"
+      }
+    }
+  },
+  "runtime_users": {
+    "definition_runtime_user_018VMH9COMVB16IGKKmxLzMyri8UYcaJyeq": {
+      "unique_name": "definition_runtime_user_018VMH9COMVB16IGKKmxLzMyri8UYcaJyeq",
+      "name": "AIO23 JSON RPC",
+      "title": "AIO23 JSON RPC",
+      "type": "runtime_user.json-rpc_credentials",
+      "base_type": "runtime_user",
+      "object_type": "definition_runtime_user",
+      "properties": {
+        "display_name": "AIO23 JSON RPC",
+        "password": "*****",
+        "user": "*****"
+      }
+    },
+    "definition_runtime_user_01B4CFH3D2DN02xZcNEpSGK2GOEDHHqAsMJ": {
+      "unique_name": "definition_runtime_user_01B4CFH3D2DN02xZcNEpSGK2GOEDHHqAsMJ",
+      "name": "AIO23 JSON RPC",
+      "title": "AIO23 JSON RPC",
+      "type": "runtime_user.json-rpc_credentials",
+      "base_type": "runtime_user",
+      "object_type": "definition_runtime_user",
+      "properties": {
+        "display_name": "AIO23 JSON RPC",
+        "password": "*****",
+        "user": "*****"
+      }
+    }
+  },
+  "atomic_workflows": [
+    "definition_workflow_019VB6S3OTZX06N6DmhcAhoAu4swQmg56Lq"
+  ]
+}

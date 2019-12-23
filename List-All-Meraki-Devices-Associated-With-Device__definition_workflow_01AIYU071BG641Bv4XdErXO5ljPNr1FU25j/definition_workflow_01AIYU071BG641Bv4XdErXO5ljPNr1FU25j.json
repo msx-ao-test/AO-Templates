@@ -1,0 +1,104 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01AIYU071BG641Bv4XdErXO5ljPNr1FU25j",
+    "name": "List All Clients in a Given Meraki Network",
+    "title": "List All Clients in a Given Meraki Network",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "scope": "input",
+          "name": "API Key",
+          "type": "datatype.secure_string"
+        },
+        "unique_name": "variable_workflow_01AIYZCEYPO1T58lX4FH986eb6Ffh8bWIZ2",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Network Serial Number",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01AIYZ0UHX1TN6mPISFB4xbu6ZvGCUJXUMZ",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "display_name": "List All Clients in a Given Meraki Network",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "target_id": "definition_target_01AIMV6ZPKJ86277h5kIcz8BNmBBE9lZ1Ci",
+        "execute_on_workflow_target": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01AIYVFX3R0BO5297KE4Hfj4havbqKjayjL",
+        "name": "HTTP Request",
+        "title": "Get the list of Network Clients",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "accept": "application/json",
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "X-Cisco-Meraki-API-Key",
+              "value": "38a0490d06be1c17786470485a3e6df920bb633d"
+            }
+          ],
+          "display_name": "Get the list of Network Clients",
+          "method": "GET",
+          "relative_url": "/devices/$workflow.definition_workflow_01AIYU071BG641Bv4XdErXO5ljPNr1FU25j.input.variable_workflow_01AIYZ0UHX1TN6mPISFB4xbu6ZvGCUJXUMZ$/clients",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "targets": {
+    "definition_target_01AIMV6ZPKJ86277h5kIcz8BNmBBE9lZ1Ci": {
+      "unique_name": "definition_target_01AIMV6ZPKJ86277h5kIcz8BNmBBE9lZ1Ci",
+      "name": "Meraki",
+      "title": "Meraki",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "disable_certificate_validation": true,
+        "display_name": "Meraki",
+        "host": "api.meraki.com",
+        "no_runtime_user": true,
+        "path": "/api/v0",
+        "protocol": "https"
+      }
+    }
+  }
+}

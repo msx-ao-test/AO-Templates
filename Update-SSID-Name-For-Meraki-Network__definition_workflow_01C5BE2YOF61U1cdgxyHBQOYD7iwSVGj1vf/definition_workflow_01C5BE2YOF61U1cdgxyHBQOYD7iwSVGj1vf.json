@@ -1,0 +1,179 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01C5BE2YOF61U1cdgxyHBQOYD7iwSVGj1vf",
+    "name": "Update the SSID Name for a Meraki Network",
+    "title": "Update the SSID Name for a Meraki Network",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Device List",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01C5BE3H6HE0942QY6aPjK4sFwwohZer7z3",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "SSID",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01C5BMDUP5Y7L0swRjSgNCvf1Sad7VlryAX",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "New SSID Name",
+          "type": "datatype.string",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01C5BQU4VS0W77UrarJCl7xRumCD0oeISxI",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "API Key",
+          "type": "datatype.secure_string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01C5BE3H6H6SN2Rn12iWYNP54h2XtRUVhSw",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "NetworkID",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01C5BE3H6HCFK3ttlJHMueG0Q4w2nFtUMXv",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "description": "This workflow will pull all the devices from your OrgID. Requires your API Key",
+      "display_name": "Update the SSID Name for a Meraki Network",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "target_id": "definition_target_01AIMV6ZPKJ86277h5kIcz8BNmBBE9lZ1Ci",
+        "execute_on_workflow_target": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01C5BE3QSIFX03BiyEbKrofChGcG4zoou0Q",
+        "name": "HTTP Request",
+        "title": "Change SSID Name",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "accept": "application/json",
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "{\n\"name\":\"$workflow.definition_workflow_01C5BE2YOF61U1cdgxyHBQOYD7iwSVGj1vf.input.variable_workflow_01C5BQU4VS0W77UrarJCl7xRumCD0oeISxI$\",\n\"enabled\":true\n}",
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "X-Cisco-Meraki-API-Key",
+              "value": "$workflow.definition_workflow_01C5BE2YOF61U1cdgxyHBQOYD7iwSVGj1vf.input.variable_workflow_01C5BE3H6H6SN2Rn12iWYNP54h2XtRUVhSw$"
+            }
+          ],
+          "display_name": "Change SSID Name",
+          "method": "PUT",
+          "relative_url": "/networks/$workflow.definition_workflow_01C5BE2YOF61U1cdgxyHBQOYD7iwSVGj1vf.input.variable_workflow_01C5BE3H6HCFK3ttlJHMueG0Q4w2nFtUMXv$/ssids/$workflow.definition_workflow_01C5BE2YOF61U1cdgxyHBQOYD7iwSVGj1vf.input.variable_workflow_01C5BMDUP5Y7L0swRjSgNCvf1Sad7VlryAX$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": true,
+            "target_id": "definition_target_01AIMV6ZPKJ86277h5kIcz8BNmBBE9lZ1Ci"
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01C5BE3XHRQWG4XeksDp5gptSqyZCntovmN",
+        "name": "Set Variables",
+        "title": "Set Variables",
+        "type": "core.set_multiple_variables",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Set Variables",
+          "skip_execution": false,
+          "variables_to_update": [
+            {
+              "variable_to_update": "$workflow.definition_workflow_01C5BE2YOF61U1cdgxyHBQOYD7iwSVGj1vf.output.variable_workflow_01C5BE3H6HE0942QY6aPjK4sFwwohZer7z3$",
+              "variable_value_new": "$activity.definition_activity_01C5BE3QSIFX03BiyEbKrofChGcG4zoou0Q.output.response_body$"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_01C5B6MS5YX7D3r4Cwn8ryKRtey0rPSowdm"
+    ]
+  },
+  "categories": {
+    "category_01C5B6MS5YX7D3r4Cwn8ryKRtey0rPSowdm": {
+      "unique_name": "category_01C5B6MS5YX7D3r4Cwn8ryKRtey0rPSowdm",
+      "name": "Meraki",
+      "title": "Meraki",
+      "type": "basic.category",
+      "base_type": "category",
+      "category_type": "custom",
+      "object_type": "category"
+    }
+  },
+  "targets": {
+    "definition_target_01AIMV6ZPKJ86277h5kIcz8BNmBBE9lZ1Ci": {
+      "unique_name": "definition_target_01AIMV6ZPKJ86277h5kIcz8BNmBBE9lZ1Ci",
+      "name": "Meraki",
+      "title": "Meraki",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "disable_certificate_validation": true,
+        "display_name": "Meraki",
+        "host": "api.meraki.com",
+        "no_runtime_user": true,
+        "path": "/api/v0",
+        "protocol": "https"
+      }
+    }
+  }
+}

@@ -1,0 +1,637 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01AWK4SIFS7PC500rVDEy86Tl2pGar6G5aG",
+    "name": "Display BGP Routing Tables",
+    "title": "Display BGP Routing Tables",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "local",
+          "name": "2. Password",
+          "type": "datatype.secure_string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01AWK4T53QTP31saPM4KROh5EBPqyTVo9wU",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Enter Serial Number",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01AWK4T53QI2G4d0U2je1QBdzMAS9cBmhnz",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "Result",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01AWK4T53QPAB5qqJCLNTq060MTiB1mIkCT",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "mkeohane",
+          "scope": "local",
+          "name": "1. Username",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01AWK4T53QS8K3svCHA88nW8fldBqjmTMrK",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "BGP Network Route Summary",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01AWKQNEW5F5J1P3q1gG8acxdfaqcMcLDQh",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "BGP Route Summary",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01AWKTG2M0OA31zNVKkLpa0dLqU7JQcNejF",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "description": "Generic Test Flow",
+      "display_name": "Display BGP Routing Tables",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "json-rpc.endpoint",
+        "target_id": "definition_target_01B4D63697W6E1kMBSzwacct6uOpOJKU1Mk",
+        "execute_on_workflow_target": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01C5PGPHJVIWF3x43BBuNn3TXRpDleY91DX",
+        "name": "Group",
+        "title": "NSO Login",
+        "type": "logic.group",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "description": "This should close out NSO on Errors so handles are not left open\n",
+          "display_name": "NSO Login",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01AWK4TCXWW8H1TTdqw8cD9nU9wveiIyd5l",
+            "name": "Session Login",
+            "title": "Session Login",
+            "type": "jsonrpc.login",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "continue_on_failure": false,
+              "display_name": "Session Login",
+              "runtime_user": {
+                "override_target_runtime_user": false,
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target": false,
+                "use_workflow_target": true
+              }
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01AWK4TJNTS1H3Uy4LEodLqdi3A47vjz7Ce",
+            "name": "Start a new Transaction",
+            "title": "Start a new Transaction",
+            "type": "jsonrpc.newtrans",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "continue_on_failure": false,
+              "database": "running",
+              "display_name": "Start a new Transaction",
+              "mode": "read_write",
+              "runtime_user": {
+                "override_target_runtime_user": false,
+                "target_default": true
+              },
+              "sessionid": "$activity.definition_activity_01AWK4TCXWW8H1TTdqw8cD9nU9wveiIyd5l.output.sessionid$",
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target": false,
+                "use_workflow_target": true
+              }
+            },
+            "object_type": "definition_activity"
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_01C5QKG5JALMC1MY4O4G8lmOKOlGsCLyun5",
+        "name": "Group",
+        "title": "Should Add Eerror Checking here",
+        "type": "logic.group",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Should Add Eerror Checking here",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01AWK4TSNODOQ3hp88wqDHSvTfVBAJaUJ6I",
+            "name": "HTTP Request",
+            "title": "MSX Login",
+            "type": "web-service.http_request",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "allow_auto_redirect": true,
+              "body": "{\n  \"username\": \"$workflow.definition_workflow_01AWK4SIFS7PC500rVDEy86Tl2pGar6G5aG.local.variable_workflow_01AWK4T53QS8K3svCHA88nW8fldBqjmTMrK$\",\n  \"password\": \"$workflow.definition_workflow_01AWK4SIFS7PC500rVDEy86Tl2pGar6G5aG.local.variable_workflow_01AWK4T53QTP31saPM4KROh5EBPqyTVo9wU$\"\n}",
+              "continue_on_error_status_code": false,
+              "continue_on_failure": false,
+              "description": "Used for AIO23 only",
+              "display_name": "MSX Login",
+              "method": "POST",
+              "relative_url": "/idm/api/v1/login",
+              "runtime_user": {
+                "override_target_runtime_user": false,
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target": true,
+                "target_id": "definition_target_018N40SYBEWWH4J9x1T5jE2vSmRhFYPj1dX"
+              }
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01AWK4U02CS3W6GkHmvAsVfcYnnIzOEPIKb",
+            "name": "JSONPath Query",
+            "title": "Extract MSX Token",
+            "type": "corejava.jsonpathquery",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "continue_on_failure": false,
+              "display_name": "Extract MSX Token",
+              "input_json": "$activity.definition_activity_01AWK4TSNODOQ3hp88wqDHSvTfVBAJaUJ6I.output.response_body$",
+              "jsonpath_queries": [
+                {
+                  "jsonpath_query": "$.responseObject.userToken",
+                  "jsonpath_query_name": "userToken",
+                  "jsonpath_query_type": "string",
+                  "zdate_type_format": ""
+                }
+              ],
+              "skip_execution": false
+            },
+            "object_type": "definition_activity"
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_01C5QLEG61RRX3hwDYxrgJQKXVSWXCthyf1",
+        "name": "Group",
+        "title": "Get Device Info",
+        "type": "logic.group",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Get Device Info",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01AWK4U7YNESB6dCsEhPu4UpTdYzvwB7yZx",
+            "name": "HTTP Request",
+            "title": "Find the Device for Serial Number",
+            "type": "web-service.http_request",
+            "base_type": "activity",
+            "properties": {
+              "accept": "application/json",
+              "action_timeout": 180,
+              "allow_auto_redirect": true,
+              "content_type": "application/json",
+              "continue_on_error_status_code": false,
+              "continue_on_failure": false,
+              "custom_headers": [
+                {
+                  "name": "Bearer",
+                  "value": ""
+                },
+                {
+                  "name": "Authorization",
+                  "value": "Bearer $activity.01B4CE6AWU28U5WbdOe4fbbVXxZB575QZLq.output.jsonpath_queries.userToken$"
+                }
+              ],
+              "description": "AIO23 Specific",
+              "display_name": "Find the Device for Serial Number",
+              "method": "GET",
+              "relative_url": "/manage/api/v1/devices?serialKey=$workflow.definition_workflow_01AWK4SIFS7PC500rVDEy86Tl2pGar6G5aG.input.variable_workflow_01AWK4T53QI2G4d0U2je1QBdzMAS9cBmhnz$",
+              "runtime_user": {
+                "override_target_runtime_user": false,
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target": true,
+                "target_id": "definition_target_018N40SYBEWWH4J9x1T5jE2vSmRhFYPj1dX"
+              }
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01AWK4UGAJNZ635FvsZs7bu2y8XgOWXvQIX",
+            "name": "JSONPath Query",
+            "title": "Extract DeviceID",
+            "type": "corejava.jsonpathquery",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "continue_on_failure": false,
+              "display_name": "Extract DeviceID",
+              "input_json": "$activity.definition_activity_01AWK4U7YNESB6dCsEhPu4UpTdYzvwB7yZx.output.response_body$",
+              "jsonpath_queries": [
+                {
+                  "jsonpath_query": "$..deviceAttribute.deviceId",
+                  "jsonpath_query_name": "deviceID",
+                  "jsonpath_query_type": "string",
+                  "zdate_type_format": ""
+                }
+              ],
+              "skip_execution": false
+            },
+            "object_type": "definition_activity"
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_01C5QLPHBPEWB45YJ7xruhpRfHDyTNdDnJi",
+        "name": "Group",
+        "title": "Get the BGP Summary",
+        "type": "logic.group",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Get the BGP Summary",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01AWK4UOEQSN62Tz5APact5sBb7V5BHxe7B",
+            "name": "Run Action",
+            "title": "Run Action BGP Summary",
+            "type": "jsonrpc.runaction",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "continue_on_failure": false,
+              "display_name": "Run Action BGP Summary",
+              "params": "{\"args\":\"\\\"do show ip bgp summary\\\"\"}",
+              "path": "/ncs:devices/device{$activity.01B4CE6SWV8C31mMqEQHcTagrV6x4zhymJE.output.jsonpath_queries.deviceID$}/config/ios:EXEC/exec",
+              "runtime_user": {
+                "override_target_runtime_user": false,
+                "target_default": true
+              },
+              "sessionid": "$activity.definition_activity_01AWK4TCXWW8H1TTdqw8cD9nU9wveiIyd5l.output.sessionid$",
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target": false,
+                "override_workflow_target_group_criteria": false,
+                "use_workflow_target": true,
+                "use_workflow_target_group": false
+              },
+              "th": "$activity.01B4CE5U1LK6R4JRTCuocJlg2gUULtuXmqb.output.th$"
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01AWK4UWSYB5O35U7C462BAshr7LFSlVYaI",
+            "name": "JSONPath Query",
+            "title": "Get Result",
+            "type": "corejava.jsonpathquery",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "continue_on_failure": false,
+              "display_name": "Get Result",
+              "input_json": "$activity.definition_activity_01AWK4UOEQSN62Tz5APact5sBb7V5BHxe7B.output.output$",
+              "jsonpath_queries": [
+                {
+                  "jsonpath_query": "$.result[0].value",
+                  "jsonpath_query_name": "Result",
+                  "jsonpath_query_type": "string",
+                  "zdate_type_format": ""
+                }
+              ],
+              "skip_execution": false
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01AWK4VACMCYC2uTNJPAw2WhvbebgPqLodB",
+            "name": "StringToHtml",
+            "title": "StringToHtml",
+            "type": "workflow.atomic_workflow",
+            "base_type": "subworkflow",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "StringToHtml",
+              "input": {
+                "variable_workflow_019VB83YPB3P45wVXyoGyYD6jtSChU2zKfQ": "$activity.definition_activity_01AWK4UWSYB5O35U7C462BAshr7LFSlVYaI.output.jsonpath_queries.Result$"
+              },
+              "runtime_user": {
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "execute_on_this_target": false,
+                "no_target": true,
+                "override_workflow_target": false,
+                "use_workflow_target": false
+              },
+              "workflow_id": "definition_workflow_019VB6S3OTZX06N6DmhcAhoAu4swQmg56Lq"
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01AWK4VMFVJMT1Xxze2TcMvjlMRglpyrFFx",
+            "name": "Set Variables",
+            "title": "Set Variables",
+            "type": "core.set_multiple_variables",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Set Variables",
+              "skip_execution": false,
+              "variables_to_update": [
+                {
+                  "variable_to_update": "$workflow.definition_workflow_01AWK4SIFS7PC500rVDEy86Tl2pGar6G5aG.output.variable_workflow_01AWKTG2M0OA31zNVKkLpa0dLqU7JQcNejF$",
+                  "variable_value_new": "$activity.definition_activity_01AWK4VACMCYC2uTNJPAw2WhvbebgPqLodB.output.variable_workflow_019VB8DIROQOS2DqDzkguxi7lWUCG6oMMLj$"
+                }
+              ]
+            },
+            "object_type": "definition_activity"
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_01C5QM46OTGA10xFydyTKAxhVSB199VRDqs",
+        "name": "Group",
+        "title": "Get OSPF Neigbors",
+        "type": "logic.group",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Get OSPF Neigbors",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01AWKMCWE0KQY1mh5NhI3kkUkZRSb9JRfLf",
+            "name": "Run Action",
+            "title": "Run Action BGP Network Routes",
+            "type": "jsonrpc.runaction",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "continue_on_failure": false,
+              "display_name": "Run Action BGP Network Routes",
+              "params": "{\"args\":\"\\\"do show ip bgp \\\"\"}",
+              "path": "/ncs:devices/device{$activity.01B4CE6SWV8C31mMqEQHcTagrV6x4zhymJE.output.jsonpath_queries.deviceID$}/config/ios:EXEC/exec",
+              "runtime_user": {
+                "override_target_runtime_user": false,
+                "target_default": true
+              },
+              "sessionid": "$activity.definition_activity_01AWK4TCXWW8H1TTdqw8cD9nU9wveiIyd5l.output.sessionid$",
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target": false,
+                "override_workflow_target_group_criteria": false,
+                "use_workflow_target": true,
+                "use_workflow_target_group": false
+              },
+              "th": "$activity.01B4CE5U1LK6R4JRTCuocJlg2gUULtuXmqb.output.th$"
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01AWKNBQV8K4S0xqJCfX7yQyxcGXXPRRbmG",
+            "name": "JSONPath Query",
+            "title": "Get Result",
+            "type": "corejava.jsonpathquery",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "continue_on_failure": false,
+              "display_name": "Get Result",
+              "input_json": "$activity.definition_activity_01AWKMCWE0KQY1mh5NhI3kkUkZRSb9JRfLf.output.output$",
+              "jsonpath_queries": [
+                {
+                  "jsonpath_query": "$.result[0].value",
+                  "jsonpath_query_name": "Result",
+                  "jsonpath_query_type": "string",
+                  "zdate_type_format": ""
+                }
+              ],
+              "skip_execution": false
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01AWKOJPTOJAC4vLwkYFdkT4lwB0lr6VkZj",
+            "name": "StringToHtml",
+            "title": "StringToHtml",
+            "type": "workflow.atomic_workflow",
+            "base_type": "subworkflow",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "StringToHtml",
+              "input": {
+                "variable_workflow_019VB83YPB3P45wVXyoGyYD6jtSChU2zKfQ": "$activity.definition_activity_01AWKNBQV8K4S0xqJCfX7yQyxcGXXPRRbmG.output.jsonpath_queries.Result$"
+              },
+              "runtime_user": {
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "execute_on_this_target": false,
+                "no_target": true,
+                "override_workflow_target": false,
+                "use_workflow_target": false
+              },
+              "workflow_id": "definition_workflow_019VB6S3OTZX06N6DmhcAhoAu4swQmg56Lq"
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01AWKTNCPCDMV5THXgCfcc3oELybNKKdcoM",
+            "name": "Set Variables",
+            "title": "Set Variables",
+            "type": "core.set_multiple_variables",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Set Variables",
+              "skip_execution": false,
+              "variables_to_update": [
+                {
+                  "variable_to_update": "$workflow.definition_workflow_01AWK4SIFS7PC500rVDEy86Tl2pGar6G5aG.output.variable_workflow_01AWKQNEW5F5J1P3q1gG8acxdfaqcMcLDQh$",
+                  "variable_value_new": "$activity.definition_activity_01AWKOJPTOJAC4vLwkYFdkT4lwB0lr6VkZj.output.variable_workflow_019VB8DIROQOS2DqDzkguxi7lWUCG6oMMLj$"
+                }
+              ]
+            },
+            "object_type": "definition_activity"
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_01C5QMMYTSZ040LlVboATiRfj0lTtEPhRcC",
+        "name": "Group",
+        "title": "In Cleaner code this would get exeecuted on any failure",
+        "type": "logic.group",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "In Cleaner code this would get exeecuted on any failure",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01AWK4VV11POA7bpNUIpyvkbVWb5Q73CDOT",
+            "name": "Session Logout",
+            "title": "Session Logout",
+            "type": "jsonrpc.logout",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "continue_on_failure": false,
+              "display_name": "Session Logout",
+              "runtime_user": {
+                "override_target_runtime_user": false,
+                "target_default": true
+              },
+              "sessionid": "$activity.definition_activity_01AWK4TCXWW8H1TTdqw8cD9nU9wveiIyd5l.output.sessionid$",
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target": false,
+                "override_workflow_target_group_criteria": false,
+                "use_workflow_target": true,
+                "use_workflow_target_group": false
+              }
+            },
+            "object_type": "definition_activity"
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_01C54M6FQH8NJ2ai8O0cvtBGSy6jt2XLvmC"
+    ]
+  },
+  "categories": {
+    "category_01C54M6FQH8NJ2ai8O0cvtBGSy6jt2XLvmC": {
+      "unique_name": "category_01C54M6FQH8NJ2ai8O0cvtBGSy6jt2XLvmC",
+      "name": "BGP Service Operations",
+      "title": "BGP Service Operations",
+      "type": "basic.category",
+      "base_type": "category",
+      "category_type": "custom",
+      "object_type": "category"
+    }
+  },
+  "targets": {
+    "definition_target_018N40SYBEWWH4J9x1T5jE2vSmRhFYPj1dX": {
+      "unique_name": "definition_target_018N40SYBEWWH4J9x1T5jE2vSmRhFYPj1dX",
+      "name": "AIO23",
+      "title": "AIO23",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "disable_certificate_validation": true,
+        "display_name": "AIO23",
+        "host": "bxbdmzaio23.tme.ciscomsx.com",
+        "no_runtime_user": true,
+        "protocol": "https"
+      }
+    },
+    "definition_target_01B4D63697W6E1kMBSzwacct6uOpOJKU1Mk": {
+      "unique_name": "definition_target_01B4D63697W6E1kMBSzwacct6uOpOJKU1Mk",
+      "name": "AIO23 JSON RPC",
+      "title": "AIO23 JSON RPC",
+      "type": "json-rpc.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "default_runtime_user_id": "definition_runtime_user_01B4CFH3D2DN02xZcNEpSGK2GOEDHHqAsMJ",
+        "display_name": "AIO23 JSON RPC",
+        "host": "nso-manageddevice.vms.svc.cluster.local",
+        "port": 8080,
+        "protocol": "http"
+      }
+    }
+  },
+  "runtime_users": {
+    "definition_runtime_user_01B4CFH3D2DN02xZcNEpSGK2GOEDHHqAsMJ": {
+      "unique_name": "definition_runtime_user_01B4CFH3D2DN02xZcNEpSGK2GOEDHHqAsMJ",
+      "name": "AIO23 JSON RPC",
+      "title": "AIO23 JSON RPC",
+      "type": "runtime_user.json-rpc_credentials",
+      "base_type": "runtime_user",
+      "object_type": "definition_runtime_user",
+      "properties": {
+        "display_name": "AIO23 JSON RPC",
+        "password": "*****",
+        "user": "*****"
+      }
+    }
+  },
+  "atomic_workflows": [
+    "definition_workflow_019VB6S3OTZX06N6DmhcAhoAu4swQmg56Lq"
+  ]
+}

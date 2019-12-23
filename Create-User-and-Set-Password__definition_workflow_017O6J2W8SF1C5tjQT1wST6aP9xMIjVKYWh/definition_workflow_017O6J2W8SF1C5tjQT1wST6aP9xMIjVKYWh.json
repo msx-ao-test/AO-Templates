@@ -1,0 +1,247 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_017O6J2W8SF1C5tjQT1wST6aP9xMIjVKYWh",
+    "name": "Create User and Set Password",
+    "title": "Create User and Set Password",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "MSX-Username",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_017O6J45Y4ODO3Wp8S1THX8h1eVt8TJpgf4",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "New User First Name",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_017OGAKJK0JAO5MI1JjdohwNmO5aO4RudbX",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "New User Last Name",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_017OGAR42F19O4MXUhB6kkzZoAbXiYEVqNr",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "New UserId",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_017OGB83RK3Q43J38dN3tGnwSZaPdEm0Es9",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "New User Password",
+          "type": "datatype.secure_string"
+        },
+        "unique_name": "variable_workflow_017OGH6J6PMNO7ZKzhjusNfWjByzH6QjTjC",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "MSX-Password",
+          "type": "datatype.secure_string"
+        },
+        "unique_name": "variable_workflow_017O6J45Y4BQ460xIDItRJNhwyqgJWkazRc",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "description": "MSX Test",
+      "display_name": "Create User and Set Password",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "target_id": "definition_target_0166EBFEZQKFH3ETSzKn9qvbHW87tfSVzuA",
+        "execute_on_workflow_target": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_017O6J4J9QWK87EOjXThRgs1ZGOUiozeKTX",
+        "name": "HTTP Request",
+        "title": "Login ID",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "accept": "application/json",
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "{\n  \"username\": \"$workflow.definition_workflow_017O6J2W8SF1C5tjQT1wST6aP9xMIjVKYWh.input.variable_workflow_017O6J45Y4ODO3Wp8S1THX8h1eVt8TJpgf4$\",\n  \"password\": \"$workflow.definition_workflow_017O6J2W8SF1C5tjQT1wST6aP9xMIjVKYWh.input.variable_workflow_017O6J45Y4BQ460xIDItRJNhwyqgJWkazRc$\"\n}",
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "display_name": "Login ID",
+          "method": "POST",
+          "relative_url": "/idm/api/v1/login",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "use_workflow_target": true
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_017O6J4QTKOAK2UVeZ546ajSrwYSQBm7mP5",
+        "name": "JSONPath Query",
+        "title": "JSONPath Query",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "display_name": "JSONPath Query",
+          "input_json": "$activity.definition_activity_017O6J4J9QWK87EOjXThRgs1ZGOUiozeKTX.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$.responseObject.userToken",
+              "jsonpath_query_name": "userToken",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_017OG85DCBL5C6EYafXEasiF0CpRwIfRPwn",
+        "name": "HTTP Request",
+        "title": "Create New User",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "accept": "application/json",
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "{\r\n  \"firstName\": \"$workflow.definition_workflow_017O6J2W8SF1C5tjQT1wST6aP9xMIjVKYWh.input.variable_workflow_017OGAKJK0JAO5MI1JjdohwNmO5aO4RudbX$\",\r\n  \"lastName\": \"$workflow.definition_workflow_017O6J2W8SF1C5tjQT1wST6aP9xMIjVKYWh.input.variable_workflow_017OGAR42F19O4MXUhB6kkzZoAbXiYEVqNr$\",\r\n  \"tenants\": [],\r\n  \"roles\": [\r\n    {\r\n      \"name\": \"OPERATOR\"\r\n    },\r\n    {\r\n      \"name\": \"CONSUMER\"\r\n    },\r\n    {\r\n      \"name\": \"WORKFLOW_ADMIN\"\r\n    },\r\n    {\r\n      \"name\": \"WORKFLOW_USER\"\r\n    },\r\n    {\r\n      \"name\": \"SUPERUSER\"\r\n    }\r\n  ],\r\n  \"locale\": \"en_US\",\r\n  \"userId\": \"$workflow.definition_workflow_017O6J2W8SF1C5tjQT1wST6aP9xMIjVKYWh.input.variable_workflow_017OGB83RK3Q43J38dN3tGnwSZaPdEm0Es9$\",\r\n  \"email\": \"$workflow.definition_workflow_017O6J2W8SF1C5tjQT1wST6aP9xMIjVKYWh.input.variable_workflow_017OGB83RK3Q43J38dN3tGnwSZaPdEm0Es9$@cisco.com\",\r\n  \"status\": \"true\"\r\n}",
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "Authorization",
+              "value": "Bearer $activity.definition_activity_017O6J4QTKOAK2UVeZ546ajSrwYSQBm7mP5.output.jsonpath_queries.userToken$"
+            }
+          ],
+          "display_name": "Create New User",
+          "method": "POST",
+          "relative_url": "/idm/api/v1/users",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_017OGFRVFN6IW2SmR1obcvnXETlV2tMWVTU",
+        "name": "HTTP Request",
+        "title": "Set the Password for the new User",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "accept": "application/json",
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "{\n  \"adminname\": \"$workflow.definition_workflow_017O6J2W8SF1C5tjQT1wST6aP9xMIjVKYWh.input.variable_workflow_017O6J45Y4ODO3Wp8S1THX8h1eVt8TJpgf4$\",\n  \"adminpassword\": \"$workflow.definition_workflow_017O6J2W8SF1C5tjQT1wST6aP9xMIjVKYWh.input.variable_workflow_017O6J45Y4BQ460xIDItRJNhwyqgJWkazRc$\",\n  \"username\": \"$workflow.definition_workflow_017O6J2W8SF1C5tjQT1wST6aP9xMIjVKYWh.input.variable_workflow_017OGB83RK3Q43J38dN3tGnwSZaPdEm0Es9$\",\n  \"password\": \"$workflow.definition_workflow_017O6J2W8SF1C5tjQT1wST6aP9xMIjVKYWh.input.variable_workflow_017OGH6J6PMNO7ZKzhjusNfWjByzH6QjTjC$\"\n}",
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "Authorization",
+              "value": "Bearer$activity.definition_activity_017O6J4QTKOAK2UVeZ546ajSrwYSQBm7mP5.output.jsonpath_queries.userToken$"
+            }
+          ],
+          "display_name": "Set the Password for the new User",
+          "method": "PUT",
+          "relative_url": "/idm/api/v1/update_password",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_015WSP6FKOE1G0rdwqNdMBv1RDpYSbj4pfX"
+    ]
+  },
+  "categories": {
+    "category_015WSP6FKOE1G0rdwqNdMBv1RDpYSbj4pfX": {
+      "unique_name": "category_015WSP6FKOE1G0rdwqNdMBv1RDpYSbj4pfX",
+      "name": "MSX Operations",
+      "title": "MSX Operations",
+      "type": "basic.category",
+      "base_type": "category",
+      "description": "Category to support MSX Operational Workflows",
+      "category_type": "custom",
+      "object_type": "category"
+    }
+  },
+  "targets": {
+    "definition_target_0166EBFEZQKFH3ETSzKn9qvbHW87tfSVzuA": {
+      "unique_name": "definition_target_0166EBFEZQKFH3ETSzKn9qvbHW87tfSVzuA",
+      "name": "AIO15",
+      "title": "AIO15",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "disable_certificate_validation": true,
+        "display_name": "AIO15",
+        "host": "bxbdmzaio15.tme.ciscomsx.com",
+        "no_runtime_user": true,
+        "protocol": "https"
+      }
+    }
+  }
+}

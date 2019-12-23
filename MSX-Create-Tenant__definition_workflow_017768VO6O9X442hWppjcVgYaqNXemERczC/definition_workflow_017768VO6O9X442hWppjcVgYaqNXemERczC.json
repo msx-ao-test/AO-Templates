@@ -1,0 +1,190 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_017768VO6O9X442hWppjcVgYaqNXemERczC",
+    "name": "Create an MSX Tenant",
+    "title": "Create an MSX Tenant",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Tenant Name",
+          "type": "datatype.string",
+          "description": "Name of the Tenant"
+        },
+        "unique_name": "variable_workflow_01776P9CQDF3W2JenDl1Vup5gOQcZqF8LmY",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Tenant Description",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01776TW2BYXEP74bjdBRJ4mTc0Dl6iJnP8l",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Tenant Web Site URL",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01776UMV0N6XA3EsSbfiF7hBdUUKnxW8LUZ",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Username",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01776YSUQFAZX0NUDSg7dmj5du97B52Spis",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "scope": "input",
+          "name": "Password",
+          "type": "datatype.secure_string"
+        },
+        "unique_name": "variable_workflow_01776YYL815WE4RiQUBm97S8ykjWA8CjIAW",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "display_name": "Create an MSX Tenant",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "target_id": "definition_target_0166EBFEZQKFH3ETSzKn9qvbHW87tfSVzuA",
+        "execute_on_workflow_target": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_0177696PCYE2X1zVtGw2aWzvovsiqsP3tsx",
+        "name": "HTTP Request",
+        "title": "Get the API Token",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "accept": "application/json",
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "{\"username\": \"$workflow.definition_workflow_017768VO6O9X442hWppjcVgYaqNXemERczC.input.variable_workflow_01776YSUQFAZX0NUDSg7dmj5du97B52Spis$\", \"password\": \"$workflow.definition_workflow_017768VO6O9X442hWppjcVgYaqNXemERczC.input.variable_workflow_01776YYL815WE4RiQUBm97S8ykjWA8CjIAW$\"}",
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "display_name": "Get the API Token",
+          "method": "POST",
+          "relative_url": "/idm/api/v1/login",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_017769BOYFUO95PEmwtFxvbaOqs7YKKRqAU",
+        "name": "JSONPath Query",
+        "title": "Get the Token",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Get the Token",
+          "input_json": "$activity.definition_activity_0177696PCYE2X1zVtGw2aWzvovsiqsP3tsx.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$.responseObject.userToken",
+              "jsonpath_query_name": "userToken",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_017769DC5OTH22aa9zX5Ix2eDBA9OCWKWnh",
+        "name": "HTTP Request",
+        "title": "Create the Tenant",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "accept": "application/json",
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "{\n  \"displayName\": \"$workflow.definition_workflow_017768VO6O9X442hWppjcVgYaqNXemERczC.input.variable_workflow_01776P9CQDF3W2JenDl1Vup5gOQcZqF8LmY$\",\n  \"email\": \"operator@operate.com\",\n  \"mobileNumber\": \"111-222-3333\",\n  \"phoneNumber\": \"111-222-3333\",\n  \"providerName\": \"admin\",\n  \"tenantDescription\": \"$workflow.definition_workflow_017768VO6O9X442hWppjcVgYaqNXemERczC.input.variable_workflow_01776TW2BYXEP74bjdBRJ4mTc0Dl6iJnP8l$\",\n  \"tenantName\": \"$workflow.definition_workflow_017768VO6O9X442hWppjcVgYaqNXemERczC.input.variable_workflow_01776P9CQDF3W2JenDl1Vup5gOQcZqF8LmY$\",\n  \"url\": \"$workflow.definition_workflow_017768VO6O9X442hWppjcVgYaqNXemERczC.input.variable_workflow_01776UMV0N6XA3EsSbfiF7hBdUUKnxW8LUZ$\",\n  \"vpnDescriptor\": \"\"\n}",
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "Authorization",
+              "value": "Bearer $activity.definition_activity_017769BOYFUO95PEmwtFxvbaOqs7YKKRqAU.output.jsonpath_queries.userToken$"
+            }
+          ],
+          "display_name": "Create the Tenant",
+          "method": "POST",
+          "relative_url": "/idm/api/v1/tenants/",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "targets": {
+    "definition_target_0166EBFEZQKFH3ETSzKn9qvbHW87tfSVzuA": {
+      "unique_name": "definition_target_0166EBFEZQKFH3ETSzKn9qvbHW87tfSVzuA",
+      "name": "AIO15",
+      "title": "AIO15",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "disable_certificate_validation": true,
+        "display_name": "AIO15",
+        "host": "bxbdmzaio15.tme.ciscomsx.com",
+        "no_runtime_user": true,
+        "protocol": "https"
+      }
+    }
+  }
+}

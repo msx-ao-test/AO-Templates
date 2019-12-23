@@ -1,0 +1,288 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01766FX3II4NV6lB7pMRjB48Ex4ON5eUcSM",
+    "name": "MSX List all iPnP Devices Attached",
+    "title": "MSX List all iPnP Devices Attached",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Username",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01766W908PLT91UKVnmEDYhsCDnGM5XMhzo",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "scope": "input",
+          "name": "Password",
+          "type": "datatype.secure_string"
+        },
+        "unique_name": "variable_workflow_01766WG8CNOTP5pOyMzPBIHhvYQfjobyHLi",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "Output",
+          "scope": "output",
+          "name": "Result",
+          "type": "datatype.string",
+          "description": "Store Variable"
+        },
+        "unique_name": "variable_workflow_01766XXSUGY2Z25BCYCJDy7laCUmeSy3FEZ",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "display_name": "MSX List all iPnP Devices Attached",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "target_id": "definition_target_018ZO14CFI36562V2K9ESbwkncOziuTjegi",
+        "execute_on_workflow_target": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01766PPGFOZY321ky50c97gMRpWdTs3OPWL",
+        "name": "HTTP Request",
+        "title": "Get User Token for MSX",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "accept": "application/json",
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "{\n  \"username\": \"$workflow.definition_workflow_01766FX3II4NV6lB7pMRjB48Ex4ON5eUcSM.input.variable_workflow_01766W908PLT91UKVnmEDYhsCDnGM5XMhzo$\",\n  \"password\": \"$workflow.definition_workflow_01766FX3II4NV6lB7pMRjB48Ex4ON5eUcSM.input.variable_workflow_01766WG8CNOTP5pOyMzPBIHhvYQfjobyHLi$\"\n}",
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "description": "MSX User Token is required ",
+          "display_name": "Get User Token for MSX",
+          "method": "POST",
+          "relative_url": "/idm/api/v1/login",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "use_workflow_target": true
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01767IDJ6Q3H15yClZ8uZTGhAopg5HwdBL4",
+        "name": "JSONPath Query",
+        "title": "Parse Out The User Token for Reference",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Parse Out The User Token for Reference",
+          "input_json": "$activity.definition_activity_01766PPGFOZY321ky50c97gMRpWdTs3OPWL.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$.responseObject.userToken",
+              "jsonpath_query_name": "userToken",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_017682EOS6C6H6yKeyUbF2UUlMFnnE2hpcD",
+        "name": "HTTP Request",
+        "title": "iPnP Query",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "accept": "application/json",
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "Authorization",
+              "value": "Bearer $activity.definition_activity_01767IDJ6Q3H15yClZ8uZTGhAopg5HwdBL4.output.jsonpath_queries.userToken$"
+            }
+          ],
+          "display_name": "iPnP Query",
+          "method": "GET",
+          "relative_url": "/admin/devices",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": true,
+            "target_id": "definition_target_018ZO0EL4WDFT1oJ7u3Ptx9KYcTELr4rLHT"
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0176DIZUQR79S0uCdjaMS6m21SU3mO953Sd",
+        "name": "Set Variables",
+        "title": "Set Variables",
+        "type": "core.set_multiple_variables",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Set Variables",
+          "variables_to_update": [
+            {
+              "variable_to_update": "$workflow.definition_workflow_01766FX3II4NV6lB7pMRjB48Ex4ON5eUcSM.output.variable_workflow_01766XXSUGY2Z25BCYCJDy7laCUmeSy3FEZ$",
+              "variable_value_new": "$activity.definition_activity_017682EOS6C6H6yKeyUbF2UUlMFnnE2hpcD.output.response_body$"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf",
+      "category_018N48CP5P46S5dIr58qUvFga0gJhsCxyqP",
+      "category_018N48CTGE0RV53ytLrp4JUwboDZEySkHAz",
+      "category_018N48CYDZQXB3bmVJgS2c91YaxlPkyw2Zj",
+      "category_018N48D31TKOA56JOIdeA4PsbIssTw8pztL",
+      "category_018N48D6TM3DC5tHK46xI2nlBuGd2ZUlN1l",
+      "category_018N48DBMXG862wPEhugcuddOlCI7dmr7he",
+      "category_018N48DFNLFHM53T9TCKwKTnw5gw1VU0za0",
+      "category_018N48DJWRT7I3xeGKUeD9yx3PdsP2pSJEY"
+    ]
+  },
+  "categories": {
+    "category_018N48CP5P46S5dIr58qUvFga0gJhsCxyqP": {
+      "unique_name": "category_018N48CP5P46S5dIr58qUvFga0gJhsCxyqP",
+      "name": "6eba1cf5-6d49-403d-bf74-b19cff424d4d",
+      "title": "6eba1cf5-6d49-403d-bf74-b19cff424d4d",
+      "type": "basic.category",
+      "base_type": "category",
+      "description": "6eba1cf5-6d49-403d-bf74-b19cff424d4d",
+      "category_type": "custom",
+      "object_type": "category"
+    },
+    "category_018N48CTGE0RV53ytLrp4JUwboDZEySkHAz": {
+      "unique_name": "category_018N48CTGE0RV53ytLrp4JUwboDZEySkHAz",
+      "name": "4727e4b5-f253-4bb9-84b4-4c98bc22923c",
+      "title": "4727e4b5-f253-4bb9-84b4-4c98bc22923c",
+      "type": "basic.category",
+      "base_type": "category",
+      "description": "4727e4b5-f253-4bb9-84b4-4c98bc22923c",
+      "category_type": "custom",
+      "object_type": "category"
+    },
+    "category_018N48CYDZQXB3bmVJgS2c91YaxlPkyw2Zj": {
+      "unique_name": "category_018N48CYDZQXB3bmVJgS2c91YaxlPkyw2Zj",
+      "name": "22a09ffe-1aa3-4753-b110-53dea93c8e0e",
+      "title": "22a09ffe-1aa3-4753-b110-53dea93c8e0e",
+      "type": "basic.category",
+      "base_type": "category",
+      "description": "22a09ffe-1aa3-4753-b110-53dea93c8e0e",
+      "category_type": "custom",
+      "object_type": "category"
+    },
+    "category_018N48D31TKOA56JOIdeA4PsbIssTw8pztL": {
+      "unique_name": "category_018N48D31TKOA56JOIdeA4PsbIssTw8pztL",
+      "name": "935769d1-f55f-435b-857c-d8a78840cb1a",
+      "title": "935769d1-f55f-435b-857c-d8a78840cb1a",
+      "type": "basic.category",
+      "base_type": "category",
+      "description": "935769d1-f55f-435b-857c-d8a78840cb1a",
+      "category_type": "custom",
+      "object_type": "category"
+    },
+    "category_018N48D6TM3DC5tHK46xI2nlBuGd2ZUlN1l": {
+      "unique_name": "category_018N48D6TM3DC5tHK46xI2nlBuGd2ZUlN1l",
+      "name": "0a56f1ad-2222-4ce2-8bfd-0f7da6748dde",
+      "title": "0a56f1ad-2222-4ce2-8bfd-0f7da6748dde",
+      "type": "basic.category",
+      "base_type": "category",
+      "description": "0a56f1ad-2222-4ce2-8bfd-0f7da6748dde",
+      "category_type": "custom",
+      "object_type": "category"
+    },
+    "category_018N48DBMXG862wPEhugcuddOlCI7dmr7he": {
+      "unique_name": "category_018N48DBMXG862wPEhugcuddOlCI7dmr7he",
+      "name": "a13bbd06-bbcf-40a0-b192-8d560d7e46d6",
+      "title": "a13bbd06-bbcf-40a0-b192-8d560d7e46d6",
+      "type": "basic.category",
+      "base_type": "category",
+      "description": "a13bbd06-bbcf-40a0-b192-8d560d7e46d6",
+      "category_type": "custom",
+      "object_type": "category"
+    },
+    "category_018N48DFNLFHM53T9TCKwKTnw5gw1VU0za0": {
+      "unique_name": "category_018N48DFNLFHM53T9TCKwKTnw5gw1VU0za0",
+      "name": "b81ec868-dfd2-495e-9ca6-192bbc778370",
+      "title": "b81ec868-dfd2-495e-9ca6-192bbc778370",
+      "type": "basic.category",
+      "base_type": "category",
+      "description": "b81ec868-dfd2-495e-9ca6-192bbc778370",
+      "category_type": "custom",
+      "object_type": "category"
+    },
+    "category_018N48DJWRT7I3xeGKUeD9yx3PdsP2pSJEY": {
+      "unique_name": "category_018N48DJWRT7I3xeGKUeD9yx3PdsP2pSJEY",
+      "name": "2fe36804-3442-48e5-b472-53bcfc073e4d",
+      "title": "2fe36804-3442-48e5-b472-53bcfc073e4d",
+      "type": "basic.category",
+      "base_type": "category",
+      "description": "2fe36804-3442-48e5-b472-53bcfc073e4d",
+      "category_type": "custom",
+      "object_type": "category"
+    }
+  },
+  "targets": {
+    "definition_target_018ZO0EL4WDFT1oJ7u3Ptx9KYcTELr4rLHT": {
+      "unique_name": "definition_target_018ZO0EL4WDFT1oJ7u3Ptx9KYcTELr4rLHT",
+      "name": "TME Demo PnP",
+      "title": "TME Demo PnP",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "disable_certificate_validation": true,
+        "display_name": "TME Demo PnP",
+        "host": "tme.demo.ciscomsx.com",
+        "no_runtime_user": true,
+        "port": 8443,
+        "protocol": "https"
+      }
+    },
+    "definition_target_018ZO14CFI36562V2K9ESbwkncOziuTjegi": {
+      "unique_name": "definition_target_018ZO14CFI36562V2K9ESbwkncOziuTjegi",
+      "name": "TME Demo",
+      "title": "TME Demo",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "disable_certificate_validation": true,
+        "display_name": "TME Demo",
+        "host": "tme.demo.ciscomsx.com",
+        "no_runtime_user": true,
+        "protocol": "https"
+      }
+    }
+  }
+}

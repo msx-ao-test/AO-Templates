@@ -1,0 +1,535 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_016XN24KB90OX7kUkWUEKvVbDBlwOIp0LYU",
+    "name": "Disconnect CPE from Umbrella Managed Firewall",
+    "title": "Disconnect CPE from Umbrella Managed Firewall",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "mkeohane",
+          "scope": "local",
+          "name": "username",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_016XN3WMRP5MI6t4WOvSdZDYZ6bLBZww1wN",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Disconnect CPE from Umbrella Secure Internet Gateway Result",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01BCZWVVLHJVP1zJbGdKnq10wY0Dn1NM0iU",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "local",
+          "name": "password",
+          "type": "datatype.secure_string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_016XN45RMUBC329FxD8P8UWL8CdRLRESTE7",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "sitename",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_016XN4KUQPHIS4G2HbCZBleA2nNur8CW9Bw",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "Connect ISR to Umbrella CloudFWaaS",
+          "scope": "local",
+          "name": "templateName",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_016XN50JJFOYM0VbQLRYt0dFA74wfUue3Od",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Tenant Name",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_016XN63WHIRAX2uS8Vh46CpI9YmMO4K65NY",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "description": "Apply template to disconnect CPE from Umbrella Managed Firewall",
+      "display_name": "Disconnect CPE from Umbrella Managed Firewall",
+      "favorite": false,
+      "runtime_user": {
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "target_id": "definition_target_018N40SYBEWWH4J9x1T5jE2vSmRhFYPj1dX",
+        "execute_on_workflow_target": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01A1CHDO19S7S7bmLW87aKyDAM9RDTdjBVG",
+        "name": "msx.user.authentication",
+        "title": "msx.user.authentication",
+        "type": "workflow.atomic_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "msx.user.authentication",
+          "input": {
+            "variable_workflow_019W2RUNYBQXP7KJSr7p7UXC5TuLza731na": "$workflow.definition_workflow_016XN24KB90OX7kUkWUEKvVbDBlwOIp0LYU.local.variable_workflow_016XN45RMUBC329FxD8P8UWL8CdRLRESTE7$",
+            "variable_workflow_019W2RUNYBUPJ74nDU5KBQC40DY0bDj94HC": "$workflow.definition_workflow_016XN24KB90OX7kUkWUEKvVbDBlwOIp0LYU.local.variable_workflow_016XN3WMRP5MI6t4WOvSdZDYZ6bLBZww1wN$"
+          },
+          "runtime_user": {
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "target_type": "019W2M6BEJYXD2RuqySfZEUWROLmIqfY9fW",
+            "use_workflow_target": true
+          },
+          "workflow_id": "definition_workflow_019W2RTU02HVO3Jp1ZbS6hsaExgG0piMaJv"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01BCD4PQJ9R7Y5QpMfW0TKkKDKKdOpUrAEi",
+        "name": "Condition Block",
+        "title": "Condition Block",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Condition Block",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01BCD4PT0E2Z70TN0CJPDFfGxGxtnQzsIcN",
+            "name": "Condition Branch",
+            "title": "Condition Branch",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01A1CHDO19S7S7bmLW87aKyDAM9RDTdjBVG.output.succeeded$",
+                "operator": "eq",
+                "right_operand": false
+              },
+              "continue_on_failure": false,
+              "display_name": "Condition Branch",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01BCD5B2VY24E5yYQOb3TNDCG23P2hgoqwS",
+                "name": "Failed",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed to Login to MSX Target Server"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_01BB7LXCT1DU93HINp96cwRofBR4H72ULNi",
+        "name": "msx.get.siteid.mike",
+        "title": "msx.get.siteid.mike",
+        "type": "workflow.atomic_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "continue_on_failure": true,
+          "display_name": "msx.get.siteid.mike",
+          "input": {
+            "variable_workflow_01BAP7NTWFEQE5q3LrEv8esLVGdat6mpAo3": "$workflow.definition_workflow_016XN24KB90OX7kUkWUEKvVbDBlwOIp0LYU.input.variable_workflow_016XN4KUQPHIS4G2HbCZBleA2nNur8CW9Bw$",
+            "variable_workflow_01BAP7NTWFLLW2gSkFIurBXSQvMBv8qTqzV": "$workflow.definition_workflow_016XN24KB90OX7kUkWUEKvVbDBlwOIp0LYU.input.variable_workflow_016XN63WHIRAX2uS8Vh46CpI9YmMO4K65NY$",
+            "variable_workflow_01BAP7NTWFOP75cxn60dsF077vFS3iMQ6gn": "$workflow.definition_workflow_016XN24KB90OX7kUkWUEKvVbDBlwOIp0LYU.local.variable_workflow_016XN45RMUBC329FxD8P8UWL8CdRLRESTE7$",
+            "variable_workflow_01BAP7NTWFQ8K2Lea7KmkJs0dPDxjAdzd5r": "$workflow.definition_workflow_016XN24KB90OX7kUkWUEKvVbDBlwOIp0LYU.local.variable_workflow_016XN3WMRP5MI6t4WOvSdZDYZ6bLBZww1wN$"
+          },
+          "runtime_user": {
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "target_type": "01B1NU9ORSEEC2KJPB3faAWaYq11OOLajQS",
+            "use_workflow_target": true
+          },
+          "workflow_id": "definition_workflow_01BAP7MT13ZR33ZeRGRJUpT8l3LEamlyVAG"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01BCD5PMRZYBE0XvUHs9492gIs2mxuGVphz",
+        "name": "Condition Block",
+        "title": "Condition Block",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Condition Block",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01BCD5PP1DE6Q2LbMC6tM2uXynb9fTVYBat",
+            "name": "Condition Branch",
+            "title": "Condition Branch",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01BB7LXCT1DU93HINp96cwRofBR4H72ULNi.output.succeeded$",
+                "operator": "eq",
+                "right_operand": false
+              },
+              "continue_on_failure": false,
+              "display_name": "Condition Branch",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01BCD5PPY60336PCY9IwTDjno3lJg1bGUXb",
+                "name": "Failed",
+                "title": "Failed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed to Login to Device Site Information"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_01A1FJAXPTUO45onUV7ZdK9ObTQCEW7zKsp",
+        "name": "msx.get.templateid",
+        "title": "msx.get.templateid",
+        "type": "workflow.atomic_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "msx.get.templateid",
+          "input": {
+            "variable_workflow_016V944ZYCIX51LlepMl6T6avwEhRnQUg3h": "$workflow.definition_workflow_016XN24KB90OX7kUkWUEKvVbDBlwOIp0LYU.local.variable_workflow_016XN3WMRP5MI6t4WOvSdZDYZ6bLBZww1wN$",
+            "variable_workflow_016V944ZYCOJR5Ss5b6nT1Q5m8QPw8vO4o6": "$workflow.definition_workflow_016XN24KB90OX7kUkWUEKvVbDBlwOIp0LYU.local.variable_workflow_016XN50JJFOYM0VbQLRYt0dFA74wfUue3Od$",
+            "variable_workflow_016V944ZYCTJG0fyUQpaXCtWt49TNyUt5Wz": "$workflow.definition_workflow_016XN24KB90OX7kUkWUEKvVbDBlwOIp0LYU.local.variable_workflow_016XN45RMUBC329FxD8P8UWL8CdRLRESTE7$"
+          },
+          "runtime_user": {
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "target_type": "019W2M6BEJYXD2RuqySfZEUWROLmIqfY9fW",
+            "use_workflow_target": true
+          },
+          "workflow_id": "definition_workflow_016V944487KDA5O6qKcxG3iNJkCUMiS3YQy"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01BCD6FOXTZD12k8EEzLpVFyNrHAaFDNJrj",
+        "name": "Condition Block",
+        "title": "Condition Block",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Condition Block",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01BCD6FQBQ64Q79iPtuQ0r9deuIZkUdHb6t",
+            "name": "Condition Branch",
+            "title": "Condition Branch",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01A1FJAXPTUO45onUV7ZdK9ObTQCEW7zKsp.output.succeeded$",
+                "operator": "eq",
+                "right_operand": false
+              },
+              "continue_on_failure": false,
+              "display_name": "Condition Branch",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01BCD6FRB5S0A3D4cX6I68wNacy7sKqh3N3",
+                "name": "Failed",
+                "title": "Failed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed to Find Template on MSX Target System"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_01BCCWYVI98C93zhCxaLVzF22vMoCTmu76H",
+        "name": "Group",
+        "title": "Remove the Template based on HIstory ID",
+        "type": "logic.group",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Remove the Template based on HIstory ID",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01BB9AFJOVOV93s81gkNvf3sD2EjIJlfyTM",
+            "name": "HTTP Request",
+            "title": "msx.get.historyid",
+            "type": "web-service.http_request",
+            "base_type": "activity",
+            "properties": {
+              "accept": "application/json",
+              "action_timeout": 180,
+              "allow_auto_redirect": true,
+              "content_type": "application/json",
+              "continue_on_error_status_code": false,
+              "continue_on_failure": false,
+              "custom_headers": [
+                {
+                  "name": "Authorization",
+                  "value": "Bearer $activity.definition_activity_01A1CHDO19S7S7bmLW87aKyDAM9RDTdjBVG.output.variable_workflow_019W2RUNYBTMY4dfJ2q8NLqMJhlqGMrCrYJ$"
+                }
+              ],
+              "description": "Using the TemplateID  and SiteID we need to find the exact template that was applied.\n\nThis is because there could the same template stacked many times.",
+              "display_name": "msx.get.historyid",
+              "method": "GET",
+              "relative_url": "manageddevice/api/v2/templatehistory?siteId=$activity.definition_activity_01BB7LXCT1DU93HINp96cwRofBR4H72ULNi.output.variable_workflow_01BAP7NTWFJYN7YztXHZPmHiC3ADnp4cFsJ$\u0026templateId=$activity.definition_activity_01A1FJAXPTUO45onUV7ZdK9ObTQCEW7zKsp.output.variable_workflow_016V944ZYCR5U5tjpKVM9174rJQviMUQpKB$",
+              "runtime_user": {
+                "override_target_runtime_user": false,
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target": false,
+                "override_workflow_target_group_criteria": false,
+                "use_workflow_target": true,
+                "use_workflow_target_group": false
+              }
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01BBCS3323A8R08Bx5Gu8KBxP5dIrGax8a1",
+            "name": "JSONPath Query",
+            "title": "Pull out templateHistoryID Value",
+            "type": "corejava.jsonpathquery",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "continue_on_failure": false,
+              "display_name": "Pull out templateHistoryID Value",
+              "input_json": "$activity.definition_activity_01BB9AFJOVOV93s81gkNvf3sD2EjIJlfyTM.output.response_body$",
+              "jsonpath_queries": [
+                {
+                  "jsonpath_query": "$..templateHistoryId",
+                  "jsonpath_query_name": "templateHistoryID",
+                  "jsonpath_query_type": "string"
+                }
+              ],
+              "skip_execution": false
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01BB9D9MVDHRI0btKSbsvHYGvN6eAl74M40",
+            "name": "HTTP Request",
+            "title": "msx.remove.templateHistoryID",
+            "type": "web-service.http_request",
+            "base_type": "activity",
+            "properties": {
+              "accept": "application/json",
+              "action_timeout": 180,
+              "allow_auto_redirect": true,
+              "content_type": "application/json",
+              "continue_on_error_status_code": false,
+              "continue_on_failure": false,
+              "custom_headers": [
+                {
+                  "name": "Authorization",
+                  "value": "Bearer  $activity.definition_activity_01A1CHDO19S7S7bmLW87aKyDAM9RDTdjBVG.output.variable_workflow_019W2RUNYBTMY4dfJ2q8NLqMJhlqGMrCrYJ$"
+                }
+              ],
+              "display_name": "msx.remove.templateHistoryID",
+              "method": "DELETE",
+              "relative_url": "manageddevice/api/v2/sites/$activity.definition_activity_01BB7LXCT1DU93HINp96cwRofBR4H72ULNi.output.variable_workflow_01BAP7NTWFJYN7YztXHZPmHiC3ADnp4cFsJ$/templateHistory/$activity.definition_activity_01BBCS3323A8R08Bx5Gu8KBxP5dIrGax8a1.output.jsonpath_queries.templateHistoryID$",
+              "runtime_user": {
+                "override_target_runtime_user": false,
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target": false,
+                "override_workflow_target_group_criteria": false,
+                "use_workflow_target": true,
+                "use_workflow_target_group": false
+              }
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01BCZX3FP4BYP4G7muW0qhuDj4o8faZIcjF",
+            "name": "Set Variables",
+            "title": "Set Variables",
+            "type": "core.set_multiple_variables",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Set Variables",
+              "skip_execution": false,
+              "variables_to_update": [
+                {
+                  "variable_to_update": "$workflow.definition_workflow_016XN24KB90OX7kUkWUEKvVbDBlwOIp0LYU.output.variable_workflow_01BCZWVVLHJVP1zJbGdKnq10wY0Dn1NM0iU$",
+                  "variable_value_new": "The CPE Site, $workflow.definition_workflow_016XN24KB90OX7kUkWUEKvVbDBlwOIp0LYU.input.variable_workflow_016XN4KUQPHIS4G2HbCZBleA2nNur8CW9Bw$, was disconnected from Umbrella for Tenant: $workflow.definition_workflow_016XN24KB90OX7kUkWUEKvVbDBlwOIp0LYU.input.variable_workflow_016XN63WHIRAX2uS8Vh46CpI9YmMO4K65NY$"
+                }
+              ]
+            },
+            "object_type": "definition_activity"
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_016V4N72OB42G4uhONPuwoIxr6bzoDbtZox"
+    ]
+  },
+  "categories": {
+    "category_016V4N72OB42G4uhONPuwoIxr6bzoDbtZox": {
+      "unique_name": "category_016V4N72OB42G4uhONPuwoIxr6bzoDbtZox",
+      "name": "Umbrella Services",
+      "title": "Umbrella Services",
+      "type": "basic.category",
+      "base_type": "category",
+      "description": "A placeholder category for all Umbrella Workflows",
+      "category_type": "custom",
+      "object_type": "category"
+    },
+    "category_019W2XVG721B44TRKBKKsepAIWpze3JlcEF": {
+      "unique_name": "category_019W2XVG721B44TRKBKKsepAIWpze3JlcEF",
+      "name": "msx-components",
+      "title": "msx-components",
+      "type": "basic.category",
+      "base_type": "category",
+      "description": "These are various atomic workflows created and used as building blocks for MSX workflows",
+      "category_type": "custom",
+      "object_type": "category"
+    },
+    "category_01ggXe9oj31C4KkAmubD6uezL1stQpioN": {
+      "unique_name": "category_01ggXe9oj31C4KkAmubD6uezL1stQpioN",
+      "name": "MSX Components",
+      "title": "MSX Components",
+      "type": "basic.category",
+      "base_type": "category",
+      "description": "This category represents MSX components used to create workflows",
+      "category_type": "custom",
+      "object_type": "category"
+    }
+  },
+  "targets": {
+    "definition_target_018N40SYBEWWH4J9x1T5jE2vSmRhFYPj1dX": {
+      "unique_name": "definition_target_018N40SYBEWWH4J9x1T5jE2vSmRhFYPj1dX",
+      "name": "AIO23",
+      "title": "AIO23",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "disable_certificate_validation": true,
+        "display_name": "AIO23",
+        "host": "bxbdmzaio23.tme.ciscomsx.com",
+        "no_runtime_user": true,
+        "protocol": "https"
+      }
+    }
+  },
+  "variables": {
+    "variable_0170BJJK1ZLDS2qVEGVpVD0okTF5pKspVOe": {
+      "unique_name": "variable_0170BJJK1ZLDS2qVEGVpVD0okTF5pKspVOe",
+      "properties": {
+        "value": true,
+        "scope": "global",
+        "name": "Found",
+        "type": "datatype.boolean",
+        "is_required": false
+      },
+      "object_type": "variable"
+    },
+    "variable_01A1DWPNH052F1JRez2zxv4J5Afyy5wDfQC": {
+      "unique_name": "variable_01A1DWPNH052F1JRez2zxv4J5Afyy5wDfQC",
+      "properties": {
+        "value": "Authorization",
+        "scope": "global",
+        "name": "AuthorizationHeader",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    }
+  },
+  "atomic_workflows": [
+    "definition_workflow_01BAP7MT13ZR33ZeRGRJUpT8l3LEamlyVAG",
+    "definition_workflow_016V944487KDA5O6qKcxG3iNJkCUMiS3YQy",
+    "definition_workflow_019W2RTU02HVO3Jp1ZbS6hsaExgG0piMaJv"
+  ]
+}

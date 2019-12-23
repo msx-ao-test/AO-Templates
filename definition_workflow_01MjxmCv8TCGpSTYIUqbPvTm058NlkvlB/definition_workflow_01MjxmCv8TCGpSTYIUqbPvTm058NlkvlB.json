@@ -1,0 +1,85 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01MjxmCv8TCGpSTYIUqbPvTm058NlkvlB",
+    "name": "Managed Device APIs",
+    "title": "Managed Device APIs",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": null,
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "display_name": "Managed Device APIs",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "target_id": "definition_target_01MLz3p6TCrpsDhpiaqlVHJZ0WOCY1rFA",
+        "execute_on_workflow_target": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01Mjy0PofDaaZlQAt569QOmylRSzT0dfj",
+        "name": "HTTP Request",
+        "title": "Get Authorization Token",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "accept": "application/json",
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "{\"username\": \"superuser\", \"password\": \"F7GDFtCzSJ\"}",
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "display_name": "Get Authorization Token",
+          "method": "POST",
+          "relative_url": "/idm/api/v1/login",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "use_workflow_target": true
+          }
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_01MLGUc8LieufuQUDFFPQOwDG5HV7yhbw"
+    ]
+  },
+  "categories": {
+    "category_01MLGUc8LieufuQUDFFPQOwDG5HV7yhbw": {
+      "unique_name": "category_01MLGUc8LieufuQUDFFPQOwDG5HV7yhbw",
+      "name": "Mike Category",
+      "title": "Mike Category",
+      "type": "basic.category",
+      "base_type": "category",
+      "description": "My Cat!!!",
+      "category_type": "custom",
+      "object_type": "category"
+    }
+  },
+  "targets": {
+    "definition_target_01MLz3p6TCrpsDhpiaqlVHJZ0WOCY1rFA": {
+      "unique_name": "definition_target_01MLz3p6TCrpsDhpiaqlVHJZ0WOCY1rFA",
+      "name": "AIO23",
+      "title": "AIO23",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "disable_certificate_validation": true,
+        "display_name": "AIO23",
+        "host": "bxbdmzaio23.tme.ciscomsx.com",
+        "no_runtime_user": true,
+        "protocol": "https"
+      }
+    }
+  }
+}

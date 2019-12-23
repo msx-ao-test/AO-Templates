@@ -1,0 +1,950 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01AWP1H7UVBMJ4QW88p0hUqUOkJptaLDHN8",
+    "name": "Validate BGP Neighbors",
+    "title": "Validate BGP Neighbors",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "mkeohane",
+          "scope": "local",
+          "name": "1. Username",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01AWP1I1JLMMA1jHKHjdwdB7vvt8OmJdKVL",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Enter  Serial Number",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01AWP1I1JLJM67fGTBfTel4lQ8iC1IJPWcn",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "loopString",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01B10IDKPYAOS58lNGrxQbcryaQ7JTcSmxt",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "BGP Route Summary",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01AWP1I1JLPR43AH8gQOVgwpubs8ZhPa9Mp",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.boolean",
+        "properties": {
+          "value": false,
+          "scope": "local",
+          "name": "networkFound",
+          "type": "datatype.boolean",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01B123U4SPVWH4fVCqO6GlFEoEpXBnWJPGS",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "networks",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01B0TME52TEQ51k5BsSddQJmHKWrQrl6uoV",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "Result",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01AWP1I1JLL9D5acyWp3m3plaWUxAYcmD3h",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "{\n  \"routes\": [\n      {\n          \"network\": \"172.21.2.1\"\n      },\n      {\n          \"network\": \"172.21.3.1\"\n      },\n\n      {\n          \"network\": \"172.21.4.1\"\n      },\n\n      {\n          \"network\": \"172.21.5.1\"\n      },\n\n      {\n          \"network\": \"172.21.6.1\"\n      },\n\n      {\n          \"network\": \"172.21.7.1\"\n      },\n      {\n          \"network\": \"172.21.8.1\"\n      }\n    ]\n}",
+          "scope": "local",
+          "name": "Routes to Validate",
+          "type": "datatype.string",
+          "description": "JSON Payload",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01AWP35VESBM83PF4et3JlkQpLQGFYggaJw",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "local",
+          "name": "2. Password",
+          "type": "datatype.secure_string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01AWP1I1JLDP15SHDpCtXc1pWHe6smrjGn0",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Found BGP Network Routes",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01B11WCWDBEXH2lKVDmt69hKh50JgZt9sOW",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "BGP Network Route Summary",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01AWP1I1JLO3409xMX6rJDrbpKmo3HIG4HZ",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Missing BGP Network Routes",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01B1238U3FDAV0eKWEmRBXVoSLU0s3UMS2K",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "description": "This workflow is intended to be used with a deployment of BGP network using Managed Device. It will search a router for the appropriate routes you provide and report back if any are not found.",
+      "display_name": "Validate BGP Neighbors",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "json-rpc.endpoint",
+        "target_id": "definition_target_01B4D63697W6E1kMBSzwacct6uOpOJKU1Mk",
+        "execute_on_workflow_target": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01C5PB8OZEXQ50GxazgFpZCO8KjhdoGmTrq",
+        "name": "Group",
+        "title": "Setup your NSO Session",
+        "type": "logic.group",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Setup your NSO Session",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01AWP1I9GGTZ26hksSDjSixrC9iJBOkvCIk",
+            "name": "Session Login",
+            "title": "Session Login to NSO",
+            "type": "jsonrpc.login",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "continue_on_failure": false,
+              "display_name": "Session Login to NSO",
+              "runtime_user": {
+                "override_target_runtime_user": false,
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target": false,
+                "use_workflow_target": true
+              }
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01AWP1IG8RW2D1D9cn0CDRR3nP5ixfGdQe3",
+            "name": "Start a new Transaction",
+            "title": "Start a new NSO Transaction",
+            "type": "jsonrpc.newtrans",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "continue_on_failure": false,
+              "database": "running",
+              "display_name": "Start a new NSO Transaction",
+              "mode": "read_write",
+              "runtime_user": {
+                "override_target_runtime_user": false,
+                "target_default": true
+              },
+              "sessionid": "$activity.definition_activity_01AWP1I9GGTZ26hksSDjSixrC9iJBOkvCIk.output.sessionid$",
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target": false,
+                "use_workflow_target": true
+              }
+            },
+            "object_type": "definition_activity"
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_01C5PBK8F0XND1rfI0Xeh44Z5VqFmsDIE91",
+        "name": "Group",
+        "title": "This needs an error Check if the Login Fails",
+        "type": "logic.group",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "This needs an error Check if the Login Fails",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01AWP1IOCADMT4ErqxAA5ltACTo5VlpZ1Ia",
+            "name": "HTTP Request",
+            "title": "MSX Login",
+            "type": "web-service.http_request",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "allow_auto_redirect": true,
+              "body": "{\n  \"username\": \"$workflow.definition_workflow_01AWP1H7UVBMJ4QW88p0hUqUOkJptaLDHN8.local.variable_workflow_01AWP1I1JLMMA1jHKHjdwdB7vvt8OmJdKVL$\",\n  \"password\": \"$workflow.definition_workflow_01AWP1H7UVBMJ4QW88p0hUqUOkJptaLDHN8.local.variable_workflow_01AWP1I1JLDP15SHDpCtXc1pWHe6smrjGn0$\"\n}",
+              "continue_on_error_status_code": false,
+              "continue_on_failure": false,
+              "description": "Used for AIO23 only",
+              "display_name": "MSX Login",
+              "method": "POST",
+              "relative_url": "/idm/api/v1/login",
+              "runtime_user": {
+                "override_target_runtime_user": false,
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target": true,
+                "target_id": "definition_target_018N40SYBEWWH4J9x1T5jE2vSmRhFYPj1dX"
+              }
+            },
+            "object_type": "definition_activity"
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_01AWP1IWNMMVI17NhPkdcAmcqjc2FI0s1nx",
+        "name": "JSONPath Query",
+        "title": "Extract MSX Access Token",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Extract MSX Access Token",
+          "input_json": "$activity.01B4D9ZXXK7N83PmZKhPN5uWRseFXr8lTH9.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$.responseObject.userToken",
+              "jsonpath_query_name": "userToken",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            }
+          ],
+          "skip_execution": false
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01C5PCTMPAIJP5Rl4hVNhIt6wqUwHQTdlfT",
+        "name": "Group",
+        "title": "Add an error check if no Serial Number is found",
+        "type": "logic.group",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Add an error check if no Serial Number is found",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01AWP1J5A1XTU4NCfcfPFUbRF78fnqOz5Eq",
+            "name": "HTTP Request",
+            "title": "Find the Device for Serial Number",
+            "type": "web-service.http_request",
+            "base_type": "activity",
+            "properties": {
+              "accept": "application/json",
+              "action_timeout": 180,
+              "allow_auto_redirect": true,
+              "content_type": "application/json",
+              "continue_on_error_status_code": false,
+              "continue_on_failure": false,
+              "custom_headers": [
+                {
+                  "name": "Bearer",
+                  "value": ""
+                },
+                {
+                  "name": "Authorization",
+                  "value": "Bearer $activity.definition_activity_01AWP1IWNMMVI17NhPkdcAmcqjc2FI0s1nx.output.jsonpath_queries.userToken$"
+                }
+              ],
+              "description": "AIO23 Specific",
+              "display_name": "Find the Device for Serial Number",
+              "method": "GET",
+              "relative_url": "/manage/api/v1/devices?serialKey=$workflow.definition_workflow_01AWP1H7UVBMJ4QW88p0hUqUOkJptaLDHN8.input.variable_workflow_01AWP1I1JLJM67fGTBfTel4lQ8iC1IJPWcn$",
+              "runtime_user": {
+                "override_target_runtime_user": false,
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target": true,
+                "target_id": "definition_target_018N40SYBEWWH4J9x1T5jE2vSmRhFYPj1dX"
+              }
+            },
+            "object_type": "definition_activity"
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_01AWP1JDVA8J7445MwzC74HfbtcNBdx5NZa",
+        "name": "JSONPath Query",
+        "title": "Extract DeviceID from API Call",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Extract DeviceID from API Call",
+          "input_json": "$activity.01B4DA0HG4MUC5UFfuSPSVKLYXkifm1Go6i.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$..deviceAttribute.deviceId",
+              "jsonpath_query_name": "deviceID",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            }
+          ],
+          "skip_execution": false
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01AWP1JM3LKZO7G5PTzRdrMhtn15rTHnCEK",
+        "name": "Run Action",
+        "title": "Run Action ; Get BGP Neighbor IDs",
+        "type": "jsonrpc.runaction",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Run Action ; Get BGP Neighbor IDs",
+          "params": "{\"args\":\"\\\"do show ip bgp neighbor  | inc remote router\\\"\"}",
+          "path": "/ncs:devices/device{$activity.definition_activity_01AWP1JDVA8J7445MwzC74HfbtcNBdx5NZa.output.jsonpath_queries.deviceID$}/config/ios:EXEC/exec",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "sessionid": "$activity.definition_activity_01AWP1I9GGTZ26hksSDjSixrC9iJBOkvCIk.output.sessionid$",
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          },
+          "th": "$activity.definition_activity_01AWP1IG8RW2D1D9cn0CDRR3nP5ixfGdQe3.output.th$"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01AWP1JUHKMZY1Jykdg8njQaiCH3qUxCb1F",
+        "name": "JSONPath Query",
+        "title": "Get Result",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Get Result",
+          "input_json": "$activity.definition_activity_01AWP1JM3LKZO7G5PTzRdrMhtn15rTHnCEK.output.output$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$.result[0].value",
+              "jsonpath_query_name": "Result",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            }
+          ],
+          "skip_execution": false
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01AWP1L98NEWX32pDxcHI4xQAz5jAHAcFqP",
+        "name": "Session Logout",
+        "title": "Logout NSO Session",
+        "type": "jsonrpc.logout",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Logout NSO Session",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "sessionid": "$activity.definition_activity_01AWP1I9GGTZ26hksSDjSixrC9iJBOkvCIk.output.sessionid$",
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01B0ZL1BVP0664p3tiYUHaKPEwRNfcVdaxq",
+        "name": "Split String",
+        "title": "Breakup the BGP Results into Networks",
+        "type": "core.splitstring",
+        "base_type": "activity",
+        "properties": {
+          "boundaries": [
+            {
+              "boundary": "\\n"
+            }
+          ],
+          "continue_on_failure": false,
+          "display_name": "Breakup the BGP Results into Networks",
+          "input_string": "$activity.definition_activity_01AWP1JUHKMZY1Jykdg8njQaiCH3qUxCb1F.output.jsonpath_queries.Result$",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01AWPY14SFDOU4LI4rIA9O0jEf81wop6edq",
+        "name": "Read Table from JSON",
+        "title": "Convert the Network Results into a Table",
+        "type": "corejava.read_table_from_json",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Convert the Network Results into a Table",
+          "input_json": "$workflow.definition_workflow_01AWP1H7UVBMJ4QW88p0hUqUOkJptaLDHN8.local.variable_workflow_01AWP35VESBM83PF4et3JlkQpLQGFYggaJw$",
+          "jsonpath_query": "$.routes",
+          "persist_output": false,
+          "populate_columns": false,
+          "skip_execution": false,
+          "table_columns": [
+            {
+              "column_name": "network",
+              "column_type": "string"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01B0TI4E01ZC31WR4gBpdR2owKdVta87vjm",
+        "name": "For Each",
+        "title": "For Each Netework Route in the Table",
+        "type": "logic.for_each",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "For Each Netework Route in the Table",
+          "skip_execution": false,
+          "source_array": "$activity.definition_activity_01AWPY14SFDOU4LI4rIA9O0jEf81wop6edq.output.read_table_from_json$"
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01B0TJTN7T6QJ4zAKRJWLvWnZywgxNmRPJq",
+            "name": "Condition Block",
+            "title": "Condition Block",
+            "type": "logic.if_else",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Condition Block",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "blocks": [
+              {
+                "unique_name": "definition_activity_01B0TJTP923HA4Rx4jxysSDnfLwQcVdT1kl",
+                "name": "Condition Branch",
+                "title": "If there is an Entry",
+                "type": "logic.condition_block",
+                "base_type": "activity",
+                "properties": {
+                  "condition": {
+                    "left_operand": "$activity.definition_activity_01B0TI4E01ZC31WR4gBpdR2owKdVta87vjm.input.source_array[@].network$",
+                    "operator": "ne",
+                    "right_operand": "\"\""
+                  },
+                  "continue_on_failure": false,
+                  "display_name": "If there is an Entry",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_01B0TMH57NHYI5E38kfSk45Ow2A2lwIih9t",
+                    "name": "Set Variables",
+                    "title": "Set Variables",
+                    "type": "core.set_multiple_variables",
+                    "base_type": "activity",
+                    "properties": {
+                      "continue_on_failure": false,
+                      "display_name": "Set Variables",
+                      "skip_execution": false,
+                      "variables_to_update": [
+                        {
+                          "variable_to_update": "$workflow.definition_workflow_01AWP1H7UVBMJ4QW88p0hUqUOkJptaLDHN8.local.variable_workflow_01B0TME52TEQ51k5BsSddQJmHKWrQrl6uoV$",
+                          "variable_value_new": "$activity.definition_activity_01B0TI4E01ZC31WR4gBpdR2owKdVta87vjm.input.source_array[@].network$"
+                        }
+                      ]
+                    },
+                    "object_type": "definition_activity"
+                  },
+                  {
+                    "unique_name": "definition_activity_01B106JUKWXQ11tur7D2qxbIoOoTDDJPnmV",
+                    "name": "For Each",
+                    "title": "For Each",
+                    "type": "logic.for_each",
+                    "base_type": "activity",
+                    "properties": {
+                      "continue_on_failure": false,
+                      "display_name": "For Each",
+                      "skip_execution": false,
+                      "source_array": "$activity.definition_activity_01B0ZL1BVP0664p3tiYUHaKPEwRNfcVdaxq.output.parts$"
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_01B10IJNHP6RX3wNiXGDKl5Q8udUb5Up80A",
+                        "name": "Set Variables",
+                        "title": "Set Variables",
+                        "type": "core.set_multiple_variables",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "Set Variables",
+                          "skip_execution": false,
+                          "variables_to_update": [
+                            {
+                              "variable_to_update": "$workflow.definition_workflow_01AWP1H7UVBMJ4QW88p0hUqUOkJptaLDHN8.local.variable_workflow_01B10IDKPYAOS58lNGrxQbcryaQ7JTcSmxt$",
+                              "variable_value_new": "$activity.definition_activity_01B106JUKWXQ11tur7D2qxbIoOoTDDJPnmV.input.source_array[@]$"
+                            }
+                          ]
+                        },
+                        "object_type": "definition_activity"
+                      },
+                      {
+                        "unique_name": "definition_activity_01B123YCDE11S1vVEr8pSyQgQG12Ru9JhCD",
+                        "name": "Set Variables",
+                        "title": "Initialize networkFound to False",
+                        "type": "core.set_multiple_variables",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "Initialize networkFound to False",
+                          "skip_execution": false,
+                          "variables_to_update": [
+                            {
+                              "variable_to_update": "$workflow.definition_workflow_01AWP1H7UVBMJ4QW88p0hUqUOkJptaLDHN8.local.variable_workflow_01B123U4SPVWH4fVCqO6GlFEoEpXBnWJPGS$",
+                              "variable_value_new": false
+                            }
+                          ]
+                        },
+                        "object_type": "definition_activity"
+                      },
+                      {
+                        "unique_name": "definition_activity_01B106Z4QWXLU730rwKnfnBrDyMnNFjzgRD",
+                        "name": "Condition Block",
+                        "title": "Condition Block",
+                        "type": "logic.if_else",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "Condition Block",
+                          "skip_execution": false
+                        },
+                        "object_type": "definition_activity",
+                        "blocks": [
+                          {
+                            "unique_name": "definition_activity_01B106Z6TMYP06fThmJc2zbamzUzXJnGmOp",
+                            "name": "Condition Branch",
+                            "title": "Condition Branch",
+                            "type": "logic.condition_block",
+                            "base_type": "activity",
+                            "properties": {
+                              "condition": {
+                                "left_operand": "$activity.definition_activity_01B106JUKWXQ11tur7D2qxbIoOoTDDJPnmV.input.source_array[@]$",
+                                "operator": "mregex",
+                                "right_operand": "$activity.definition_activity_01B0TI4E01ZC31WR4gBpdR2owKdVta87vjm.input.source_array[@].network$"
+                              },
+                              "continue_on_failure": false,
+                              "display_name": "Condition Branch",
+                              "skip_execution": false
+                            },
+                            "object_type": "definition_activity",
+                            "actions": [
+                              {
+                                "unique_name": "definition_activity_01B108TF2SXI04p9MEadwjBG5m54pVxTIN1",
+                                "name": "Set Variables",
+                                "title": "Add the Network to the List of Found BGP Networks",
+                                "type": "core.set_multiple_variables",
+                                "base_type": "activity",
+                                "properties": {
+                                  "continue_on_failure": false,
+                                  "display_name": "Add the Network to the List of Found BGP Networks",
+                                  "skip_execution": false,
+                                  "variables_to_update": [
+                                    {
+                                      "variable_to_update": "$workflow.definition_workflow_01AWP1H7UVBMJ4QW88p0hUqUOkJptaLDHN8.output.variable_workflow_01B11WCWDBEXH2lKVDmt69hKh50JgZt9sOW$",
+                                      "variable_value_new": "$workflow.definition_workflow_01AWP1H7UVBMJ4QW88p0hUqUOkJptaLDHN8.output.variable_workflow_01B11WCWDBEXH2lKVDmt69hKh50JgZt9sOW$  \\n $activity.definition_activity_01B0TI4E01ZC31WR4gBpdR2owKdVta87vjm.input.source_array[@].network$"
+                                    }
+                                  ]
+                                },
+                                "object_type": "definition_activity"
+                              },
+                              {
+                                "unique_name": "definition_activity_01B124VSXHHDY5YX3rM126cVyRwid8I0dR6",
+                                "name": "Set Variables",
+                                "title": "set networkFound to True",
+                                "type": "core.set_multiple_variables",
+                                "base_type": "activity",
+                                "properties": {
+                                  "continue_on_failure": false,
+                                  "display_name": "set networkFound to True",
+                                  "skip_execution": false,
+                                  "variables_to_update": [
+                                    {
+                                      "variable_to_update": "$workflow.definition_workflow_01AWP1H7UVBMJ4QW88p0hUqUOkJptaLDHN8.local.variable_workflow_01B123U4SPVWH4fVCqO6GlFEoEpXBnWJPGS$",
+                                      "variable_value_new": true
+                                    }
+                                  ]
+                                },
+                                "object_type": "definition_activity"
+                              },
+                              {
+                                "unique_name": "definition_activity_01B11XJJ6ZBOU7ZzE30ipEWhVvntttNcEn3",
+                                "name": "Break",
+                                "title": "Break",
+                                "type": "logic.break",
+                                "base_type": "activity",
+                                "properties": {
+                                  "continue_on_failure": false,
+                                  "display_name": "Break",
+                                  "skip_execution": false
+                                },
+                                "object_type": "definition_activity"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "unique_name": "definition_activity_01B126IH7U9D56NKpT0ILIpETjIdSTvsSGV",
+                    "name": "Condition Block",
+                    "title": "Was the Network Found?",
+                    "type": "logic.if_else",
+                    "base_type": "activity",
+                    "properties": {
+                      "continue_on_failure": false,
+                      "display_name": "Was the Network Found?",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "blocks": [
+                      {
+                        "unique_name": "definition_activity_01B126IJAHL151dE22LgeIDLBD3fXF8Xc7v",
+                        "name": "Condition Branch",
+                        "title": "If networkFound is False Add",
+                        "type": "logic.condition_block",
+                        "base_type": "activity",
+                        "properties": {
+                          "condition": {
+                            "left_operand": "$workflow.definition_workflow_01AWP1H7UVBMJ4QW88p0hUqUOkJptaLDHN8.local.variable_workflow_01B123U4SPVWH4fVCqO6GlFEoEpXBnWJPGS$",
+                            "operator": "eq",
+                            "right_operand": false
+                          },
+                          "continue_on_failure": false,
+                          "display_name": "If networkFound is False Add",
+                          "skip_execution": false
+                        },
+                        "object_type": "definition_activity",
+                        "actions": [
+                          {
+                            "unique_name": "definition_activity_01B1279LARQOX5VaiSkfuQCa1cVTM6r9yMW",
+                            "name": "Set Variables",
+                            "title": "Set Variables",
+                            "type": "core.set_multiple_variables",
+                            "base_type": "activity",
+                            "properties": {
+                              "continue_on_failure": false,
+                              "display_name": "Set Variables",
+                              "skip_execution": false,
+                              "variables_to_update": [
+                                {
+                                  "variable_to_update": "$workflow.definition_workflow_01AWP1H7UVBMJ4QW88p0hUqUOkJptaLDHN8.output.variable_workflow_01B1238U3FDAV0eKWEmRBXVoSLU0s3UMS2K$",
+                                  "variable_value_new": "$workflow.definition_workflow_01AWP1H7UVBMJ4QW88p0hUqUOkJptaLDHN8.output.variable_workflow_01B1238U3FDAV0eKWEmRBXVoSLU0s3UMS2K$  \\n $activity.definition_activity_01B0TI4E01ZC31WR4gBpdR2owKdVta87vjm.input.source_array[@].network$"
+                                }
+                              ]
+                            },
+                            "object_type": "definition_activity"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "unique_name": "definition_activity_01B0TJTQ5DBU718gZJmVOYlMv2cBe0yHgwd",
+                "name": "Condition Branch",
+                "title": "If there are no more entries",
+                "type": "logic.condition_block",
+                "base_type": "activity",
+                "properties": {
+                  "condition": {
+                    "left_operand": "$activity.definition_activity_01B0TI4E01ZC31WR4gBpdR2owKdVta87vjm.input.source_array[@].network$",
+                    "operator": "eq",
+                    "right_operand": "null"
+                  },
+                  "continue_on_failure": false,
+                  "display_name": "If there are no more entries",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_01B0TN5JJ6R2A1bYYoGhqQWfKTVZFrAfAp1",
+                    "name": "Break",
+                    "title": "Break",
+                    "type": "logic.break",
+                    "base_type": "activity",
+                    "properties": {
+                      "continue_on_failure": false,
+                      "display_name": "Break",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_01AWP1K1U1OMZ7HUFyldJ3x56CYZvnQdmCp",
+        "name": "StringToHtml",
+        "title": "StringToHtml",
+        "type": "workflow.atomic_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "StringToHtml",
+          "input": {
+            "variable_workflow_019VB83YPB3P45wVXyoGyYD6jtSChU2zKfQ": "$workflow.definition_workflow_01AWP1H7UVBMJ4QW88p0hUqUOkJptaLDHN8.output.variable_workflow_01B11WCWDBEXH2lKVDmt69hKh50JgZt9sOW$"
+          },
+          "runtime_user": {
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "execute_on_this_target": false,
+            "no_target": true,
+            "override_workflow_target": false,
+            "use_workflow_target": false
+          },
+          "workflow_id": "definition_workflow_019VB6S3OTZX06N6DmhcAhoAu4swQmg56Lq"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01AWP1K71O7ZT3gPgQaFF7ClOCxTgkAyPla",
+        "name": "Set Variables",
+        "title": "Set Variables",
+        "type": "core.set_multiple_variables",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Set Variables",
+          "skip_execution": false,
+          "variables_to_update": [
+            {
+              "variable_to_update": "$workflow.definition_workflow_01AWP1H7UVBMJ4QW88p0hUqUOkJptaLDHN8.output.variable_workflow_01B11WCWDBEXH2lKVDmt69hKh50JgZt9sOW$",
+              "variable_value_new": "$activity.definition_activity_01AWP1K1U1OMZ7HUFyldJ3x56CYZvnQdmCp.output.variable_workflow_019VB8DIROQOS2DqDzkguxi7lWUCG6oMMLj$"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01B12G81MIGTF7cTcmFVAF2tF5ZTF4bjclT",
+        "name": "StringToHtml",
+        "title": "StringToHtml",
+        "type": "workflow.atomic_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "StringToHtml",
+          "input": {
+            "variable_workflow_019VB83YPB3P45wVXyoGyYD6jtSChU2zKfQ": "$workflow.definition_workflow_01AWP1H7UVBMJ4QW88p0hUqUOkJptaLDHN8.output.variable_workflow_01B1238U3FDAV0eKWEmRBXVoSLU0s3UMS2K$"
+          },
+          "runtime_user": {
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "no_target": true
+          },
+          "workflow_id": "definition_workflow_019VB6S3OTZX06N6DmhcAhoAu4swQmg56Lq"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01B12GHYNNGO51ssJMddcOzaZvUtZGocmlO",
+        "name": "Set Variables",
+        "title": "Set Variables",
+        "type": "core.set_multiple_variables",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Set Variables",
+          "skip_execution": false,
+          "variables_to_update": [
+            {
+              "variable_to_update": "$workflow.definition_workflow_01AWP1H7UVBMJ4QW88p0hUqUOkJptaLDHN8.output.variable_workflow_01B1238U3FDAV0eKWEmRBXVoSLU0s3UMS2K$",
+              "variable_value_new": "$activity.definition_activity_01B12G81MIGTF7cTcmFVAF2tF5ZTF4bjclT.output.variable_workflow_019VB8DIROQOS2DqDzkguxi7lWUCG6oMMLj$"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_01C54M6FQH8NJ2ai8O0cvtBGSy6jt2XLvmC"
+    ]
+  },
+  "categories": {
+    "category_01C54M6FQH8NJ2ai8O0cvtBGSy6jt2XLvmC": {
+      "unique_name": "category_01C54M6FQH8NJ2ai8O0cvtBGSy6jt2XLvmC",
+      "name": "BGP Service Operations",
+      "title": "BGP Service Operations",
+      "type": "basic.category",
+      "base_type": "category",
+      "category_type": "custom",
+      "object_type": "category"
+    }
+  },
+  "targets": {
+    "definition_target_018N40SYBEWWH4J9x1T5jE2vSmRhFYPj1dX": {
+      "unique_name": "definition_target_018N40SYBEWWH4J9x1T5jE2vSmRhFYPj1dX",
+      "name": "AIO23",
+      "title": "AIO23",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "disable_certificate_validation": true,
+        "display_name": "AIO23",
+        "host": "bxbdmzaio23.tme.ciscomsx.com",
+        "no_runtime_user": true,
+        "protocol": "https"
+      }
+    },
+    "definition_target_01B4D63697W6E1kMBSzwacct6uOpOJKU1Mk": {
+      "unique_name": "definition_target_01B4D63697W6E1kMBSzwacct6uOpOJKU1Mk",
+      "name": "AIO23 JSON RPC",
+      "title": "AIO23 JSON RPC",
+      "type": "json-rpc.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "default_runtime_user_id": "definition_runtime_user_01B4CFH3D2DN02xZcNEpSGK2GOEDHHqAsMJ",
+        "display_name": "AIO23 JSON RPC",
+        "host": "nso-manageddevice.vms.svc.cluster.local",
+        "port": 8080,
+        "protocol": "http"
+      }
+    }
+  },
+  "runtime_users": {
+    "definition_runtime_user_01B4CFH3D2DN02xZcNEpSGK2GOEDHHqAsMJ": {
+      "unique_name": "definition_runtime_user_01B4CFH3D2DN02xZcNEpSGK2GOEDHHqAsMJ",
+      "name": "AIO23 JSON RPC",
+      "title": "AIO23 JSON RPC",
+      "type": "runtime_user.json-rpc_credentials",
+      "base_type": "runtime_user",
+      "object_type": "definition_runtime_user",
+      "properties": {
+        "display_name": "AIO23 JSON RPC",
+        "password": "*****",
+        "user": "*****"
+      }
+    }
+  },
+  "atomic_workflows": [
+    "definition_workflow_019VB6S3OTZX06N6DmhcAhoAu4swQmg56Lq"
+  ]
+}

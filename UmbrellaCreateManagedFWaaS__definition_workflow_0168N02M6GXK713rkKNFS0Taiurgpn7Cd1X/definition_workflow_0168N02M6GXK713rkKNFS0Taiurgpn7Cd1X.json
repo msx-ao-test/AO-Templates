@@ -1,0 +1,718 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_0168N02M6GXK713rkKNFS0Taiurgpn7Cd1X",
+    "name": "Create Umbrella Managed Firewall HeadEnd",
+    "title": "Create Umbrella Managed Firewall HeadEnd",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "2306820",
+          "scope": "local",
+          "name": "orgId",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0168N1S7RTC0A5BdRoOiJzN9skIj0AZjRRV",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "ISR",
+          "scope": "local",
+          "name": "devicetype",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0168N2GIRVOH75gY4Fpz8DehE7p8RMBt9h8",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "secret",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01BC5BRE66TV51tHUjI4SU8vJlbQANH5o8v",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Tenant",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01BC4XB9OUVG60TZdEkD2PEpHUkh2eRWF4I",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "TunnelId",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01BC78H28EVZB5i9ntRvfrOp0gNKKClX1lS",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "YjZkZmI1N2NmNTU1NDRjNmJkOTBiZjI1N2RiNDdkZTI6MGQxMTE2NWY4MWZlNGZmOGEwYTIyODYxYzU0Yjc4NmM=",
+          "scope": "local",
+          "name": "umbrella-key",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0168N1EJSMB8R5ypGeCNzHMC7vsKakQypeI",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "PSK",
+          "scope": "local",
+          "name": "authenticationmethod",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0168N32SCGYWL3CTEKTzIUFV3PQlhmx7rhn",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "output",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01BC53IT6EA6S02gY3OqNDZbIkIw5nBw8ri",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Name of Connection",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0168N266P8CO80XiCNb0ZteJq6CTVJiGnAx",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Create Umbrella Headend Result",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01BCZB5NZ5VIP0Rn0dTuv6ubOt25IZD6Yjc",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "deleteId",
+          "type": "datatype.string",
+          "description": "Used for Deleting the Headend ",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01BCE1VYSL5KD10jhBEgbrlqLoYb91wG9JI",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "description": "This network tunnel creates a secure connection between Umbrella and a compatible device",
+      "display_name": "Create Umbrella Managed Firewall HeadEnd",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "target_id": "definition_target_0168HECHE4CIR12yT4uVpQg1bqEFctu3dN4",
+        "execute_on_workflow_target": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01BC6T11CKKRC4mHT0x6nPBnI2bifk6QTMg",
+        "name": "Group",
+        "title": "Create the Umbrella Headend",
+        "type": "logic.group",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "description": "Get the output string",
+          "display_name": "Create the Umbrella Headend",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_0168N3FVGSUZ03Dl498jHNM2sTrZVrZHccB",
+            "name": "HTTP Request",
+            "title": "Create Network Tunnel",
+            "type": "web-service.http_request",
+            "base_type": "activity",
+            "properties": {
+              "accept": "application/json",
+              "action_timeout": 180,
+              "allow_auto_redirect": true,
+              "body": "{\n  \"name\": \"$workflow.definition_workflow_0168N02M6GXK713rkKNFS0Taiurgpn7Cd1X.input.variable_workflow_0168N266P8CO80XiCNb0ZteJq6CTVJiGnAx$\",\n  \"deviceType\": \"$workflow.definition_workflow_0168N02M6GXK713rkKNFS0Taiurgpn7Cd1X.local.variable_workflow_0168N2GIRVOH75gY4Fpz8DehE7p8RMBt9h8$\",\n  \"transportProtocols\": [\n    \"IPSec\"\n  ],\n  \"authentication\": {\n    \"type\": \"$workflow.definition_workflow_0168N02M6GXK713rkKNFS0Taiurgpn7Cd1X.local.variable_workflow_0168N32SCGYWL3CTEKTzIUFV3PQlhmx7rhn$\"\n  }\n}",
+              "content_type": "application/json",
+              "continue_on_error_status_code": false,
+              "continue_on_failure": false,
+              "custom_headers": [
+                {
+                  "name": "$global.variable_01A1DWPNH052F1JRez2zxv4J5Afyy5wDfQC.global.variable_01A1DWPNH052F1JRez2zxv4J5Afyy5wDfQC$",
+                  "value": "$workflow.definition_workflow_0168N02M6GXK713rkKNFS0Taiurgpn7Cd1X.local.variable_workflow_0168N1EJSMB8R5ypGeCNzHMC7vsKakQypeI$"
+                }
+              ],
+              "display_name": "Create Network Tunnel",
+              "method": "POST",
+              "relative_url": "/organizations/$workflow.definition_workflow_0168N02M6GXK713rkKNFS0Taiurgpn7Cd1X.local.variable_workflow_0168N1S7RTC0A5BdRoOiJzN9skIj0AZjRRV$/tunnels",
+              "runtime_user": {
+                "override_target_runtime_user": false,
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target": false,
+                "override_workflow_target_group_criteria": false,
+                "use_workflow_target": true,
+                "use_workflow_target_group": false
+              }
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01BC6V3Z6HHBK3jdZMFwjg0MiIGFvM8lb0B",
+            "name": "Condition Block",
+            "title": "Error Check",
+            "type": "logic.if_else",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Error Check",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "blocks": [
+              {
+                "unique_name": "definition_activity_01BC6V41VDOHS78TPcPZQWbQofgJ7ST1pZt",
+                "name": "Condition Branch",
+                "title": "Did Umbrella Call Succeed?",
+                "type": "logic.condition_block",
+                "base_type": "activity",
+                "properties": {
+                  "condition": {
+                    "left_operand": "$activity.definition_activity_0168N3FVGSUZ03Dl498jHNM2sTrZVrZHccB.output.succeeded$",
+                    "operator": "eq",
+                    "right_operand": false
+                  },
+                  "continue_on_failure": false,
+                  "display_name": "Did Umbrella Call Succeed?",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_01BC6W3P9EQZK5SZQdstL3BoZw2BRtAs7Rg",
+                    "name": "Failed",
+                    "title": "Failed",
+                    "type": "logic.completed",
+                    "base_type": "activity",
+                    "properties": {
+                      "completion_type": "failed-completed",
+                      "display_name": "Failed",
+                      "result_message": "The Call to Umbrella to Create the Control Plane Failed"
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01BC53NI5U3QF16m8HGrsv2HSH6JBEgxmJk",
+            "name": "Set Variables",
+            "title": "Copy the Result Output from Create Call",
+            "type": "core.set_multiple_variables",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Copy the Result Output from Create Call",
+              "skip_execution": false,
+              "variables_to_update": [
+                {
+                  "variable_to_update": "$workflow.definition_workflow_0168N02M6GXK713rkKNFS0Taiurgpn7Cd1X.local.variable_workflow_01BC53IT6EA6S02gY3OqNDZbIkIw5nBw8ri$",
+                  "variable_value_new": "$activity.definition_activity_0168N3FVGSUZ03Dl498jHNM2sTrZVrZHccB.output.response_body$"
+                }
+              ]
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01BC58VWWG3RW55xuiedkdQTIdlFbcenVUV",
+            "name": "Split String",
+            "title": "Break up the Response Body String so it can be parsed",
+            "type": "core.splitstring",
+            "base_type": "activity",
+            "properties": {
+              "boundaries": [
+                {
+                  "boundary": ","
+                }
+              ],
+              "continue_on_failure": false,
+              "display_name": "Break up the Response Body String so it can be parsed",
+              "input_string": "$workflow.definition_workflow_0168N02M6GXK713rkKNFS0Taiurgpn7Cd1X.local.variable_workflow_01BC53IT6EA6S02gY3OqNDZbIkIw5nBw8ri$",
+              "skip_execution": false,
+              "use_regexp": true
+            },
+            "object_type": "definition_activity"
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_01BC5C96FN1AP7XdVCBziGbvpGpSdgSncnJ",
+        "name": "For Each",
+        "title": "For All the Entries in the Umbrella Response",
+        "type": "logic.for_each",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "For All the Entries in the Umbrella Response",
+          "skip_execution": false,
+          "source_array": "$activity.01BC58VUVAKHN79LiNesaX0Zcr1WsrrsRiB.output.parts$"
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01BC5WXY1QIV173dAiP6QYMLboYEx6OPQPm",
+            "name": "Split String",
+            "title": "Split into Key Value Pair",
+            "type": "core.splitstring",
+            "base_type": "activity",
+            "properties": {
+              "boundaries": [
+                {
+                  "boundary": ":"
+                }
+              ],
+              "continue_on_failure": false,
+              "display_name": "Split into Key Value Pair",
+              "input_string": "$activity.definition_activity_01BC5C96FN1AP7XdVCBziGbvpGpSdgSncnJ.input.source_array[@]$",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01BC5CBP95U2H0jOdGdohBtdFLURA8MRoKZ",
+            "name": "Condition Block",
+            "title": "Find the Secret ",
+            "type": "logic.if_else",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Find the Secret ",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "blocks": [
+              {
+                "unique_name": "definition_activity_01BC5CBRJVQBO2292RPSCTrua0RUO8XK5wb",
+                "name": "Condition Branch",
+                "title": "Check for Secret",
+                "type": "logic.condition_block",
+                "base_type": "activity",
+                "properties": {
+                  "condition": {
+                    "left_operand": "$activity.definition_activity_01BC5C96FN1AP7XdVCBziGbvpGpSdgSncnJ.input.source_array[@]$$activity.definition_activity_01BC5WXY1QIV173dAiP6QYMLboYEx6OPQPm.output.parts[0]$",
+                    "operator": "mregex",
+                    "right_operand": "secret"
+                  },
+                  "continue_on_failure": false,
+                  "display_name": "Check for Secret",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_01BC6QDOHDRYZ2QrC8kOgUTbQPcfTtyuVDP",
+                    "name": "Trim String",
+                    "title": "Trim String",
+                    "type": "core.trim_string",
+                    "base_type": "activity",
+                    "properties": {
+                      "characters_to_trim": "\"",
+                      "continue_on_failure": false,
+                      "display_name": "Trim String",
+                      "skip_execution": false,
+                      "source": "$activity.definition_activity_01BC5WXY1QIV173dAiP6QYMLboYEx6OPQPm.output.parts[-1]$",
+                      "trim_leading": true,
+                      "trim_trailing": true
+                    },
+                    "object_type": "definition_activity"
+                  },
+                  {
+                    "unique_name": "definition_activity_01BC5BVCVPO381zlDdjTMqLZMTbSlSo91D6",
+                    "name": "Set Variables",
+                    "title": "Set Variables",
+                    "type": "core.set_multiple_variables",
+                    "base_type": "activity",
+                    "properties": {
+                      "continue_on_failure": false,
+                      "display_name": "Set Variables",
+                      "skip_execution": false,
+                      "variables_to_update": [
+                        {
+                          "variable_to_update": "$workflow.definition_workflow_0168N02M6GXK713rkKNFS0Taiurgpn7Cd1X.local.variable_workflow_01BC5BRE66TV51tHUjI4SU8vJlbQANH5o8v$",
+                          "variable_value_new": "$activity.definition_activity_01BC6QDOHDRYZ2QrC8kOgUTbQPcfTtyuVDP.output.trimmed$"
+                        }
+                      ]
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01BC75LWXM7II2rX5RJGD28Zh2Cy6vQrtvg",
+            "name": "Condition Block",
+            "title": "Check for TunnelID",
+            "type": "logic.if_else",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Check for TunnelID",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "blocks": [
+              {
+                "unique_name": "definition_activity_01BC75M12M6JP1uJTA54xHeIyH4TByS6U9m",
+                "name": "Condition Branch",
+                "title": "Found TunnelId",
+                "type": "logic.condition_block",
+                "base_type": "activity",
+                "properties": {
+                  "condition": {
+                    "left_operand": "$activity.definition_activity_01BC5WXY1QIV173dAiP6QYMLboYEx6OPQPm.output.parts[0]$",
+                    "operator": "mregex",
+                    "right_operand": "parameters"
+                  },
+                  "continue_on_failure": false,
+                  "display_name": "Found TunnelId",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_01BC77NGN31QA47jilBIqdCl6FQbWL0AD39",
+                    "name": "Trim String",
+                    "title": "Trim String",
+                    "type": "core.trim_string",
+                    "base_type": "activity",
+                    "properties": {
+                      "characters_to_trim": "\"",
+                      "continue_on_failure": false,
+                      "display_name": "Trim String",
+                      "skip_execution": false,
+                      "source": "$activity.definition_activity_01BC5WXY1QIV173dAiP6QYMLboYEx6OPQPm.output.parts[-1]$",
+                      "trim_leading": true,
+                      "trim_trailing": true
+                    },
+                    "object_type": "definition_activity"
+                  },
+                  {
+                    "unique_name": "definition_activity_01BC78KTW29PO7eyiPneIWMtH0ExXZ8QCNs",
+                    "name": "Set Variables",
+                    "title": "Assign Trimmed Variable to TunnelId",
+                    "type": "core.set_multiple_variables",
+                    "base_type": "activity",
+                    "properties": {
+                      "continue_on_failure": false,
+                      "display_name": "Assign Trimmed Variable to TunnelId",
+                      "skip_execution": false,
+                      "variables_to_update": [
+                        {
+                          "variable_to_update": "$workflow.definition_workflow_0168N02M6GXK713rkKNFS0Taiurgpn7Cd1X.local.variable_workflow_01BC78H28EVZB5i9ntRvfrOp0gNKKClX1lS$",
+                          "variable_value_new": "$activity.definition_activity_01BC77NGN31QA47jilBIqdCl6FQbWL0AD39.output.trimmed$"
+                        }
+                      ]
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01BCDXHKLHU5S1uVAQwixQDbolq8JQwxmKI",
+            "name": "Group",
+            "title": "Find ID required for Deletion",
+            "type": "logic.group",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Find ID required for Deletion",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01BCE0CFNW2TR0f2kAntKak2xCiktzrNVMr",
+                "name": "Condition Block",
+                "title": "Condition Block",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Condition Block",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_01BCE0CHWM8YU4pWiMWyjX8ujsWpOL3NtmL",
+                    "name": "Condition Branch",
+                    "title": "Condition Branch",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_01BC5WXY1QIV173dAiP6QYMLboYEx6OPQPm.output.parts[0]$",
+                        "operator": "mregex",
+                        "right_operand": "id"
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "Condition Branch",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_01BCE2KZD5HYN7mK8zgnC5zl163ju9zwXEr",
+                        "name": "Trim String",
+                        "title": "Trim String",
+                        "type": "core.trim_string",
+                        "base_type": "activity",
+                        "properties": {
+                          "characters_to_trim": "\"",
+                          "continue_on_failure": false,
+                          "display_name": "Trim String",
+                          "skip_execution": false,
+                          "source": "$activity.definition_activity_01BC5WXY1QIV173dAiP6QYMLboYEx6OPQPm.output.parts[-1]$",
+                          "trim_leading": true,
+                          "trim_trailing": true
+                        },
+                        "object_type": "definition_activity"
+                      },
+                      {
+                        "unique_name": "definition_activity_01BCE25D7Z7T42jERyxfAQOmT5jf4lW5rvR",
+                        "name": "Set Variables",
+                        "title": "Set Variables",
+                        "type": "core.set_multiple_variables",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "Set Variables",
+                          "skip_execution": false,
+                          "variables_to_update": [
+                            {
+                              "variable_to_update": "$workflow.definition_workflow_0168N02M6GXK713rkKNFS0Taiurgpn7Cd1X.local.variable_workflow_01BCE1VYSL5KD10jhBEgbrlqLoYb91wG9JI$",
+                              "variable_value_new": "$activity.definition_activity_01BCE2KZD5HYN7mK8zgnC5zl163ju9zwXEr.output.trimmed$"
+                            }
+                          ]
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_01BCEO9LZ8R6S6mvPztY97aR6u0BvwiP3Ui",
+        "name": "Add Row to Table",
+        "title": "Add Row to Table",
+        "type": "core.addrowtotable",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Add Row to Table",
+          "input_table": "$global.variable_01BCENVVPMT4D7J4zW9KpIkzmgDagNQVOO2.global.variable_01BCENVVPMT4D7J4zW9KpIkzmgDagNQVOO2$",
+          "row": [
+            {
+              "key": "Tenant",
+              "type": "string",
+              "value": "$workflow.definition_workflow_0168N02M6GXK713rkKNFS0Taiurgpn7Cd1X.input.variable_workflow_01BC4XB9OUVG60TZdEkD2PEpHUkh2eRWF4I$"
+            },
+            {
+              "key": "PSK",
+              "type": "string",
+              "value": "$workflow.definition_workflow_0168N02M6GXK713rkKNFS0Taiurgpn7Cd1X.local.variable_workflow_01BC5BRE66TV51tHUjI4SU8vJlbQANH5o8v$"
+            },
+            {
+              "key": "TunnelId",
+              "type": "string",
+              "value": "$workflow.definition_workflow_0168N02M6GXK713rkKNFS0Taiurgpn7Cd1X.local.variable_workflow_01BC78H28EVZB5i9ntRvfrOp0gNKKClX1lS$"
+            },
+            {
+              "key": "deleteId",
+              "type": "string",
+              "value": "$workflow.definition_workflow_0168N02M6GXK713rkKNFS0Taiurgpn7Cd1X.local.variable_workflow_01BCE1VYSL5KD10jhBEgbrlqLoYb91wG9JI$"
+            }
+          ],
+          "skip_execution": false
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01BCZBAQA5RXW3FZgbmiefSq9RGRlF6iKrk",
+        "name": "Set Variables",
+        "title": "Set Variables",
+        "type": "core.set_multiple_variables",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Set Variables",
+          "skip_execution": false,
+          "variables_to_update": [
+            {
+              "variable_to_update": "$workflow.definition_workflow_0168N02M6GXK713rkKNFS0Taiurgpn7Cd1X.output.variable_workflow_01BCZB5NZ5VIP0Rn0dTuv6ubOt25IZD6Yjc$",
+              "variable_value_new": "The Umbrella Secure Gateway Headend was created for Tenant: $workflow.definition_workflow_0168N02M6GXK713rkKNFS0Taiurgpn7Cd1X.input.variable_workflow_01BC4XB9OUVG60TZdEkD2PEpHUkh2eRWF4I$"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_016V4N72OB42G4uhONPuwoIxr6bzoDbtZox"
+    ]
+  },
+  "categories": {
+    "category_016V4N72OB42G4uhONPuwoIxr6bzoDbtZox": {
+      "unique_name": "category_016V4N72OB42G4uhONPuwoIxr6bzoDbtZox",
+      "name": "Umbrella Services",
+      "title": "Umbrella Services",
+      "type": "basic.category",
+      "base_type": "category",
+      "description": "A placeholder category for all Umbrella Workflows",
+      "category_type": "custom",
+      "object_type": "category"
+    }
+  },
+  "targets": {
+    "definition_target_0168HECHE4CIR12yT4uVpQg1bqEFctu3dN4": {
+      "unique_name": "definition_target_0168HECHE4CIR12yT4uVpQg1bqEFctu3dN4",
+      "name": "msx-umbrella-target",
+      "title": "msx-umbrella-target",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "disable_certificate_validation": true,
+        "display_name": "msx-umbrella-target",
+        "host": "poc.demo.ciscomsx.com",
+        "no_runtime_user": true,
+        "path": "/umbrella/v1",
+        "protocol": "https"
+      }
+    }
+  },
+  "variables": {
+    "variable_01A1DWPNH052F1JRez2zxv4J5Afyy5wDfQC": {
+      "unique_name": "variable_01A1DWPNH052F1JRez2zxv4J5Afyy5wDfQC",
+      "properties": {
+        "value": "Authorization",
+        "scope": "global",
+        "name": "AuthorizationHeader",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    },
+    "variable_01BCENVVPMT4D7J4zW9KpIkzmgDagNQVOO2": {
+      "unique_name": "variable_01BCENVVPMT4D7J4zW9KpIkzmgDagNQVOO2",
+      "schema_id": "tabletype_01BC38AFG5J7H1hT8upcMYILa3mn8LeCwQy",
+      "properties": {
+        "scope": "global",
+        "name": "UmbrellaFWaaSTable",
+        "type": "datatype.table",
+        "description": "Used as a Database for the Umbrella Service",
+        "is_required": false
+      },
+      "object_type": "variable"
+    }
+  },
+  "table_types": {
+    "tabletype_01BC38AFG5J7H1hT8upcMYILa3mn8LeCwQy": {
+      "unique_name": "tabletype_01BC38AFG5J7H1hT8upcMYILa3mn8LeCwQy",
+      "data_type": "datatype.tabletype",
+      "display_name": "Umbrella",
+      "columns": [
+        {
+          "is_required": true,
+          "name": "PSK",
+          "title": "PSK",
+          "type": "string"
+        },
+        {
+          "is_required": true,
+          "name": "Tenant",
+          "title": "Tenant",
+          "type": "string"
+        },
+        {
+          "is_required": true,
+          "name": "TunnelId",
+          "title": "TunnelId",
+          "type": "string"
+        },
+        {
+          "is_required": true,
+          "name": "deleteId",
+          "title": "deleteId",
+          "type": "string"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  }
+}

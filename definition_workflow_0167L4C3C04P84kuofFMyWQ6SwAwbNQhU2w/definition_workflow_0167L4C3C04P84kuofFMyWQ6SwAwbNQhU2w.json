@@ -1,0 +1,150 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_0167L4C3C04P84kuofFMyWQ6SwAwbNQhU2w",
+    "name": "List all SD-Branch Sites",
+    "title": "List all SD-Branch Sites",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "scope": "input",
+          "name": "MSX Password",
+          "type": "datatype.secure_string"
+        },
+        "unique_name": "variable_workflow_0167L8MHXE13G0ufYHei8wpB3TRaLtzTNLc",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "MSX Username",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_0167L8GF3YBHW3Dp2CS9Jr7kyVkDDkTjJuZ",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "description": "Query MSX Platform Inventory for All Devices configured on SD-Branch Service",
+      "display_name": "List all SD-Branch Sites",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_0167L6B4Y0RKY3EUpjo9Uksa6VcwDPYroYh",
+        "name": "HTTP Request",
+        "title": "Get Login Token",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "accept": "application/json",
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "{\"username\": \"$workflow.definition_workflow_0167L4C3C04P84kuofFMyWQ6SwAwbNQhU2w.input.variable_workflow_0167L8GF3YBHW3Dp2CS9Jr7kyVkDDkTjJuZ$\", \"password\": \"$workflow.definition_workflow_0167L4C3C04P84kuofFMyWQ6SwAwbNQhU2w.input.variable_workflow_0167L8MHXE13G0ufYHei8wpB3TRaLtzTNLc$\"}",
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "display_name": "Get Login Token",
+          "method": "POST",
+          "relative_url": "/idm/api/v1/login",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0167LB2ODNLA2446Ug1NSN9sYh0zNYZlE8Y",
+        "name": "JSONPath Query",
+        "title": "JSONPath Query Get Token",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "JSONPath Query Get Token",
+          "input_json": "$activity.definition_activity_0167L6B4Y0RKY3EUpjo9Uksa6VcwDPYroYh.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$.responseObject.userToken",
+              "jsonpath_query_name": "userToken",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0167LCGTKVLXO3Yh92s2KEuLR0sII6R2iVY",
+        "name": "HTTP Request",
+        "title": "Get SD-WAN Branch Sites",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "accept": "application/json",
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "Authorization",
+              "value": "Bearer $activity.definition_activity_0167LB2ODNLA2446Ug1NSN9sYh0zNYZlE8Y.output.jsonpath_queries.userToken$"
+            }
+          ],
+          "display_name": "Get SD-WAN Branch Sites",
+          "method": "GET",
+          "relative_url": "/vbranch/api/v1/sites",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_015WSP6FKOE1G0rdwqNdMBv1RDpYSbj4pfX"
+    ]
+  },
+  "categories": {
+    "category_015WSP6FKOE1G0rdwqNdMBv1RDpYSbj4pfX": {
+      "unique_name": "category_015WSP6FKOE1G0rdwqNdMBv1RDpYSbj4pfX",
+      "name": "MSX Operations",
+      "title": "MSX Operations",
+      "type": "basic.category",
+      "base_type": "category",
+      "description": "Category to support MSX Operational Workflows",
+      "category_type": "custom",
+      "object_type": "category"
+    }
+  }
+}

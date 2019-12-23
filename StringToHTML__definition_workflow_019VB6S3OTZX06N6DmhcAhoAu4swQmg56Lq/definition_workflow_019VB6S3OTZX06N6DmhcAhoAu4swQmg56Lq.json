@@ -1,0 +1,106 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_019VB6S3OTZX06N6DmhcAhoAu4swQmg56Lq",
+    "name": "StringToHtml",
+    "title": "StringToHtml",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "outputHtml",
+          "type": "datatype.string",
+          "description": "Converted string to html"
+        },
+        "unique_name": "variable_workflow_019VB8DIROQOS2DqDzkguxi7lWUCG6oMMLj",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "inputString",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_019VB83YPB3P45wVXyoGyYD6jtSChU2zKfQ",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Atomic Workflows",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "description": "Convert String to HTML that will allow you to better view the result.",
+      "display_name": "StringToHtml",
+      "favorite": false,
+      "target": {
+        "execute_on_target_group": false,
+        "execute_on_workflow_target": false,
+        "no_target": true,
+        "specify_on_workflow_start": false
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_019VB8LQ9YFU05eoFQ8zoPQV9sjtDwzYAem",
+        "name": "Replace String",
+        "title": "Replace Escaped Characters",
+        "type": "core.replacestring",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "description": "Replace escaped characters with HTML Elements",
+          "display_name": "Replace Escaped Characters",
+          "input_string": "$workflow.definition_workflow_019VB6S3OTZX06N6DmhcAhoAu4swQmg56Lq.input.variable_workflow_019VB83YPB3P45wVXyoGyYD6jtSChU2zKfQ$",
+          "replace_list": [
+            {
+              "replaced_string": "\\r\\n",
+              "replacement_string": "\u003cbr\u003e"
+            },
+            {
+              "replaced_string": "\\n",
+              "replacement_string": "\u003cbr\u003e"
+            },
+            {
+              "replaced_string": "\\r",
+              "replacement_string": "\u003cbr\u003e"
+            },
+            {
+              "replaced_string": "\\t",
+              "replacement_string": "\u0026emsp;"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_019VBB7S0YOSG0XZ43daw1P5mXPucLKfdtK",
+        "name": "Set Variables",
+        "title": "Set Output",
+        "type": "core.set_multiple_variables",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Set Output",
+          "variables_to_update": [
+            {
+              "variable_to_update": "$workflow.definition_workflow_019VB6S3OTZX06N6DmhcAhoAu4swQmg56Lq.output.variable_workflow_019VB8DIROQOS2DqDzkguxi7lWUCG6oMMLj$",
+              "variable_value_new": "\u003cstyle\u003e.custom-ao-pretty-print-style {text-align:initial !important}\u003c/style\u003e\u003cpre class=\"custom-ao-pretty-print-style\"\u003e$activity.definition_activity_019VB8LQ9YFU05eoFQ8zoPQV9sjtDwzYAem.output.result_string$\u003c/pre\u003e"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}

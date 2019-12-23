@@ -1,0 +1,166 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_0176CI2QSXI2V62drRjsISqBNUo9g1vZ5iu",
+    "name": "Get all SD-Branch Sites on  MSX System",
+    "title": "Get all SD-Branch Sites on  MSX System",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Result",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_0176DB35QPPIU2mDVLpBT9kx4nsXel5IeDK",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "username",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_0176D6PJHQLN11zyovqa2GohERKR3w44ofs",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "scope": "input",
+          "name": "password",
+          "type": "datatype.secure_string"
+        },
+        "unique_name": "variable_workflow_0176D6VPT6C861R1xb3Ji6o9dpqOdKzlIbT",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "display_name": "Get all SD-Branch Sites on  MSX System",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_0176CJ8AK7A560fKHB1y3sWSrGcdk357DoP",
+        "name": "HTTP Request",
+        "title": "Get User Token",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "accept": "application/json",
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "{\n  \"username\": \"$workflow.definition_workflow_0176CI2QSXI2V62drRjsISqBNUo9g1vZ5iu.input.variable_workflow_0176D6PJHQLN11zyovqa2GohERKR3w44ofs$\",\n  \"password\": \"$workflow.definition_workflow_0176CI2QSXI2V62drRjsISqBNUo9g1vZ5iu.input.variable_workflow_0176D6VPT6C861R1xb3Ji6o9dpqOdKzlIbT$\"\n}",
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "display_name": "Get User Token",
+          "method": "POST",
+          "relative_url": "/idm/api/v1/login",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0176CKDVO0OMG1f3oCigq79v3I6DROiTZJR",
+        "name": "JSONPath Query",
+        "title": "Parse out the Token",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Parse out the Token",
+          "input_json": "$activity.definition_activity_0176CJ8AK7A560fKHB1y3sWSrGcdk357DoP.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$.responseObject.userToken",
+              "jsonpath_query_name": "userToken",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0176CM8O5CAYJ5aM3b5VzDhiaOZqupdyBz0",
+        "name": "HTTP Request",
+        "title": "Get all the SD-Branch Devices",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "accept": "application/json",
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "Authorization",
+              "value": "Bearer  $activity.definition_activity_0176CKDVO0OMG1f3oCigq79v3I6DROiTZJR.output.jsonpath_queries.userToken$"
+            }
+          ],
+          "display_name": "Get all the SD-Branch Devices",
+          "method": "GET",
+          "relative_url": "vbranch/api/v1/sites",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0176DAUZ5T4HV0NZPhtQE1CFBfleOBQPshj",
+        "name": "Set Variables",
+        "title": "Set The Result to the Output",
+        "type": "core.set_multiple_variables",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Set The Result to the Output",
+          "variables_to_update": [
+            {
+              "variable_to_update": "$workflow.definition_workflow_0176CI2QSXI2V62drRjsISqBNUo9g1vZ5iu.output.variable_workflow_0176DB35QPPIU2mDVLpBT9kx4nsXel5IeDK$",
+              "variable_value_new": "$activity.definition_activity_0176CM8O5CAYJ5aM3b5VzDhiaOZqupdyBz0.output.response_body$"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}
