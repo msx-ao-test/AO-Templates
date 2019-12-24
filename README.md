@@ -18,4 +18,3 @@ The steps for installing Git varies by the operating system you are running and 
 The URL can be found via the GitHub user interface on the `Clone or download` button as seen below
 
 ![GitHub screenshot](git-clone-url.jpg)
-Format: ![Alt Text](url)
