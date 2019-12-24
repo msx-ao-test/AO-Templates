@@ -14,3 +14,8 @@ If you are new to Git, that's okay. Here are a few steps steps to take to get st
 The steps for installing Git varies by the operating system you are running and there are plenty of resources available on the web (including GitHub). Cloning the repository is fairly straight forward:
 
 ```git clone https://github.com/msx-ao-test/AO-Templates.git```
+
+The URL can be found via the GitHub user interface on the `Clone or download` button as seen below
+
+![GitHub screenshot](git-clone-url.jpg)
+Format: ![Alt Text](url)
