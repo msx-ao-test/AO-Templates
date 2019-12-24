@@ -18,3 +18,15 @@ The steps for installing Git varies by the operating system you are running and 
 The URL can be found via the GitHub user interface on the `Clone or download` button as seen below
 
 ![GitHub screenshot](git-clone-url.jpg)
+
+## Contribute your ideas
+
+Contributions are welcome! To contribute, we follow the typical GitHub flow where
+
+* Fork if you would like to make a copy of the repo and work on your own changes/additions/modifications (submit a PR if you would like to add your contributions to this repo)
+* Clone if you would just like to use what is here
+* Branch this repo and submit a PR if you would like to include your contributions back to this repo. Please name the branch after your username and a dash followed by a very brief description of the template you are either modifying or adding.
+
+We'll add instructions on how to perform these steps for those of you who are new to Git and would like to contribute to the repo.
+
+Enjoy!
